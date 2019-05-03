@@ -87,12 +87,12 @@ fi
 #=================================================
 ynh_print_info --message="Updating Drush alias..."
 
-cp -f "../conf/yoursite.aliases.drushrc.php" "$final_path/.drush/$app.aliases.drushrc.php"
+cp -f "../conf/example.site.yml" "$final_path/drush/sites/$app.site.yml"
 
-ynh_replace_string "__FINALPATH__" "$final_path" "$final_path/.drush/$app.aliases.drushrc.php"
-ynh_replace_string "__APP__" "$app" "$final_path/.drush/$app.aliases.drushrc.php"
-ynh_replace_string "__DOMAIN__" "$new_domain" "$final_path/.drush/$app.aliases.drushrc.php"
-ynh_replace_string "__PATH_URL__" "$new_path" "$final_path/.drush/$app.aliases.drushrc.php"
+ynh_replace_string "__FINALPATH__" "$final_path" "$final_path/drush/sites/$app.site.yml"
+ynh_replace_string "__APP__" "$app" "$final_path/drush/sites/$app.site.yml"
+ynh_replace_string "__DOMAIN__" "$domain" "$final_path/drush/sites/$app.site.yml"
+ynh_replace_string "__PATH_URL__" "$path_url" "$final_path/drush/sites/$app.site.yml"
 
 #=================================================
 # GENERIC FINALISATION
