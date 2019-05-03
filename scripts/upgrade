@@ -1,0 +1,187 @@
+#!/bin/bash
+
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source ynh_add_extra_apt_repos__3
+source ynh_install_php__3
+source ynh_composer__2
+source /usr/share/yunohost/helpers
+
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_print_info --message="Loading installation settings..."
+
+app=$YNH_APP_INSTANCE_NAME
+
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+path_url=$(ynh_app_setting_get --app=$app --key=path)
+admin=$(ynh_app_setting_get --app=$app --key=admin)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+language=$(ynh_app_setting_get --app=$app --key=language)
+db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_print_info --message="Ensuring downward compatibility..."
+
+# Fix is_public as a boolean value
+if [ "$is_public" = "Yes" ]; then
+	ynh_app_setting_set --app=$app --key=is_public --value=1
+	is_public=1
+elif [ "$is_public" = "No" ]; then
+	ynh_app_setting_set --app=$app --key=is_public --value=0
+	is_public=0
+fi
+
+# If db_name doesn't exist, create it
+if [ -z $db_name ]; then
+	db_name=$(ynh_sanitize_dbid --db_name=$app)
+	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+fi
+
+# If final_path doesn't exist, create it
+if [ -z $final_path ]; then
+	final_path=/var/www/$app
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+#=================================================
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+ynh_print_info --message="Backing up the app before upgrading (may take a while)..."
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	read -p "key"# restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# STANDARD UPGRADE STEPS
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_print_info --message="Upgrading source files..."
+
+# Download, check integrity, uncompress and patch the source from app.src
+#ynh_setup_source --dest_dir="$final_path"
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_print_info --message="Upgrading nginx web server configuration..."
+
+# Create a dedicated nginx config
+ynh_add_nginx_config
+
+#=================================================
+# UPGRADE DEPENDENCIES
+#=================================================
+ynh_print_info --message="Upgrading dependencies..."
+
+ynh_install_app_dependencies $pkg_dependencies
+ynh_install_php --phpversion="7.2" --package="$extra_pkg_dependencies"
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_print_info --message="Making sure dedicated system user exists..."
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_print_info --message="Upgrading php-fpm configuration..."
+
+# Create a dedicated php-fpm config
+ynh_add_fpm_config --phpversion="7.2"
+
+#=================================================
+# SPECIFIC UPGRADE
+#=================================================
+# UPDATE COMPOSER
+#=================================================
+ynh_print_info --message="Updating Composer..."
+
+update-alternatives --set php /usr/bin/php7.2   
+ynh_install_composer --phpversion="7.2" --workdir="$final_path"
+update-alternatives --set php /usr/bin/php7.0
+
+#=================================================
+# UPDATE DRUPAL
+#=================================================
+ynh_print_info --message="Updating Drupal..."
+
+export PATH="$final_path/vendor/bin:$PATH"
+
+#sudo -u $app env PATH=$PATH drush @$app.prod cache-clear all 
+#sudo -u $app env PATH=$PATH drush @$app.prod pm-update drupal
+#sudo -u $app env PATH=$PATH drush @$app.prod cache-clear all 
+#sudo -u $app env PATH=$PATH drush @$app.prod l10n-update-refresh
+#sudo -u $app env PATH=$PATH drush @$app.prod l10n-update
+
+pushd "$final_path"
+    update-alternatives --set php /usr/bin/php7.2 
+    sudo -u $app env PATH=$PATH drush @$app.prod state:set system.maintenance_mode 1 --input-format=integer
+    sudo -u $app env PATH=$PATH php7.2 composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
+    sudo -u $app env PATH=$PATH php7.2 composer.phar update --with-dependencies
+    sudo -u $app env PATH=$PATH drush @$app.prod -y updatedb
+    sudo -u $app env PATH=$PATH drush @$app.prod cache:rebuild
+    sudo -u $app env PATH=$PATH drush @$app.prod state:set system.maintenance_mode 0 --input-format=integer
+    update-alternatives --set php /usr/bin/php7.0
+popd
+
+#=================================================
+# STORE THE CONFIG FILE CHECKSUM
+#=================================================
+
+ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/settings.php"
+# Recalculate and store the checksum of the file for the next upgrade.
+ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
+
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+
+# Set permissions on app files
+chown -R $app: $final_path
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_print_info --message="Upgrading SSOwat configuration..."
+
+# Make app public if necessary
+if [ $is_public -eq 1 ]
+then
+	# unprotected_uris allows SSO credentials to be passed anyway
+	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+fi
+
+#=================================================
+# RELOAD NGINX
+#=================================================
+ynh_print_info --message="Reloading nginx web server..."
+
+systemctl reload nginx
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_print_info --message="Upgrade of $app completed"

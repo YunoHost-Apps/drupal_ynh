@@ -1,0 +1,3 @@
+prod:
+  root: __FINALPATH__/__APP__/
+  uri: https://__DOMAIN____PATH_URL__
