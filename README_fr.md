@@ -25,7 +25,7 @@ Framework de gestion de contenu libre et open-source.
 
 #### Support multi-utilisateurs
 
-le module d'authentification LDAP peut être installé
+Le module d'authentification LDAP peut être installé
 
 #### Supported architectures
 
