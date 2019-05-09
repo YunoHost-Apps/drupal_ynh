@@ -154,7 +154,7 @@ popd
 #=================================================
 # SET THE CRON FILE
 #=================================================
-ynh_print_info --message="Set the cron file"
+ynh_print_info --message="Setting the cron file"
 
 cp ../conf/cron /etc/cron.d/$app
 
