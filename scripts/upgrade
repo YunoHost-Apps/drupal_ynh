@@ -153,6 +153,16 @@ ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/setti
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
 #=================================================
+# SET THE CRON FILE
+#=================================================
+ynh_print_info --message="Setting the cron file"
+
+cp -f ../conf/cron /etc/cron.d/$app
+
+ynh_replace_string "__FINALPATH__" "$final_path" /etc/cron.d/$app
+ynh_replace_string "__APP__" "$app" /etc/cron.d/$app
+
+#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
