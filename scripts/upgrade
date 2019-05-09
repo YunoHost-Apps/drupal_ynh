@@ -191,6 +191,13 @@ ynh_print_info --message="Reloading nginx web server..."
 systemctl reload nginx
 
 #=================================================
+# RESTART CRON
+#=================================================
+ynh_print_info --message="Restarting cron..."
+
+systemctl restart cron
+
+#=================================================
 # END OF SCRIPT
 #=================================================
 
