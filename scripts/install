@@ -16,10 +16,6 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
-	read -p "key"
-	true
-}
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
@@ -35,7 +31,7 @@ language=$YNH_APP_ARG_LANGUAGE
 password=$YNH_APP_ARG_PASSWORD
 install_profil=$YNH_APP_ARG_INSTALL_PROFIL
 
-admin_mail=$(ynh_user_get_info $admin 'mail')
+admin_mail=$(ynh_user_get_info --username=$admin --key="mail")
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -45,7 +41,7 @@ app=$YNH_APP_INSTANCE_NAME
 ynh_print_info --message="Validating installation parameters..."
 
 final_path=/var/www/$app
-test ! -e "$final_path" || ynh_die "This path already contains a folder"
+test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
@@ -77,7 +73,7 @@ ynh_install_php --phpversion="7.2" --package="$extra_pkg_dependencies"
 #=================================================
 ynh_print_info --message="Creating a MySQL database..."
 
-db_name=$(ynh_sanitize_dbid $app)
+db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
@@ -90,7 +86,6 @@ ynh_print_info --message="Setting up source files..."
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
-#mkdir -p "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -119,10 +114,10 @@ mkdir -p "$final_path/drush/sites/"
 
 cp -f "../conf/example.site.yml" "$final_path/drush/sites/$app.site.yml"
 
-ynh_replace_string "__FINALPATH__" "$final_path" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__APP__" "$app" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__DOMAIN__" "$domain" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__PATH_URL__" "$path_url" "$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__PATH_URL__" --replace_string="$path_url" --target_file="$final_path/drush/sites/$app.site.yml"
 
 #=================================================
 # INSTALL COMPOSER
@@ -132,7 +127,7 @@ ynh_print_info --message="Installing Composer..."
 mkdir -p "$final_path/.composer"
 
 cp -f "../conf/composer.json" "$final_path/composer.json"
-ynh_replace_string "__APP__" "$app" "$final_path/composer.json"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/composer.json"
 
 ynh_install_composer --phpversion="7.2" --workdir="$final_path"
 
@@ -158,8 +153,8 @@ ynh_print_info --message="Setting the cron file"
 
 cp ../conf/cron /etc/cron.d/$app
 
-ynh_replace_string "__FINALPATH__" "$final_path" /etc/cron.d/$app
-ynh_replace_string "__APP__" "$app" /etc/cron.d/$app
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" -target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" -target_file="/etc/cron.d/$app"
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -202,7 +197,7 @@ fi
 #=================================================
 ynh_print_info --message="Reloading nginx web server..."
 
-systemctl reload nginx
+ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
