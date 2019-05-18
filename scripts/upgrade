@@ -110,6 +110,13 @@ ynh_add_fpm_config --phpversion="7.2"
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
+# ADD SWAPP
+#=================================================
+ynh_print_info --message="Adding swap..."
+
+ynh_add_swap --size=512
+
+#=================================================
 # UPDATE COMPOSER
 #=================================================
 ynh_print_info --message="Updating Composer..."

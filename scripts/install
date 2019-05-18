@@ -10,6 +10,7 @@ source _common.sh
 source ynh_add_extra_apt_repos__3
 source ynh_install_php__3
 source ynh_composer__2
+source ynh_add_swap
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -31,7 +32,7 @@ language=$YNH_APP_ARG_LANGUAGE
 password=$YNH_APP_ARG_PASSWORD
 install_profil=$YNH_APP_ARG_INSTALL_PROFIL
 
-admin_mail=$(ynh_user_get_info --username=$admin --key="mail")
+admin_mail=$(ynh_user_get_info --username=$admin --key=mail)
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -111,6 +112,13 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # SPECIFIC SETUP
+#=================================================
+# ADD SWAPP
+#=================================================
+ynh_print_info --message="Adding swap..."
+
+ynh_add_swap --size=512
+
 #=================================================
 # CREATE DRUSH ALIAS
 #=================================================

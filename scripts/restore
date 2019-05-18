@@ -10,6 +10,7 @@
 source ../settings/scripts/_common.sh
 source ../settings/scripts/ynh_add_extra_apt_repos__3
 source ../settings/scripts/ynh_install_php__3
+source ../settings/scripts/ynh_add_swap
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -103,6 +104,13 @@ ynh_restore_file --origin_path="/etc/php/7.2/fpm/pool.d/$app.conf"
 #=================================================
 
 ynh_restore_file --origin_path="/etc/cron.d/$app"
+
+#=================================================
+# ADD SWAPP
+#=================================================
+ynh_print_info --message="Adding swap..."
+
+ynh_add_swap --size=512
 
 #=================================================
 # GENERIC FINALIZATION

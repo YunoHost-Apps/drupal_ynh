@@ -9,6 +9,7 @@
 source _common.sh
 source ynh_add_extra_apt_repos__3
 source ynh_install_php__3
+source ynh_add_swap
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -66,6 +67,13 @@ ynh_print_info --message="Removing nginx web server configuration..."
 
 # Remove the dedicated nginx config
 ynh_remove_nginx_config
+
+#=================================================
+# REMOVE SWAPP
+#=================================================
+ynh_print_info --message="Removing swap..."
+
+ynh_del_swap
 
 #=================================================
 # SPECIFIC REMOVE
