@@ -66,6 +66,12 @@ ynh_app_setting_set --app=$app --key=install_profil --value=$install_profil
 ynh_print_info --message="Installing dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
+# INSTALL PHP
+#=================================================
+ynh_print_info --message="Installing PHP..."
+
 ynh_install_php --phpversion="7.2" --package="$extra_pkg_dependencies"
 
 #=================================================
@@ -157,14 +163,6 @@ ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path"
 ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
 
 #=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_print_info --message="Configuring php-fpm..."
-
-# Create a dedicated php-fpm config
-ynh_add_fpm_config --phpversion="7.2"
-
-#=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
 
@@ -173,6 +171,14 @@ ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
 #=================================================
 # GENERIC FINALIZATION
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_print_info --message="Configuring php-fpm..."
+
+# Create a dedicated php-fpm config
+ynh_add_fpm_config --phpversion="7.2"
+
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
