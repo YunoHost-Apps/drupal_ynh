@@ -31,6 +31,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
 # Add settings here as needed by your application
 #db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+#db_user=$db_name
 #db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
 
 #=================================================
@@ -89,10 +90,10 @@ ynh_print_info --message="Updating Drush alias..."
 
 cp -f "../conf/example.site.yml" "$final_path/drush/sites/$app.site.yml"
 
-ynh_replace_string "__FINALPATH__" "$final_path" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__APP__" "$app" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__DOMAIN__" "$domain" "$final_path/drush/sites/$app.site.yml"
-ynh_replace_string "__PATH_URL__" "$path_url" "$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__PATH_URL__" --replace_string="$path_url" --target_file="$final_path/drush/sites/$app.site.yml"
 
 #=================================================
 # GENERIC FINALISATION
@@ -101,7 +102,7 @@ ynh_replace_string "__PATH_URL__" "$path_url" "$final_path/drush/sites/$app.site
 #=================================================
 ynh_print_info --message="Reloading nginx web server..."
 
-systemctl reload nginx
+ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

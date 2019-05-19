@@ -10,6 +10,7 @@ source _common.sh
 source ynh_add_extra_apt_repos__3
 source ynh_install_php__3
 source ynh_composer__2
+source ynh_add_swap
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -27,6 +28,12 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
+##=================================================
+# CHECK VERSION
+#=================================================
+
+upgrade_type=$(ynh_check_app_version_changed)
+
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
@@ -42,13 +49,13 @@ elif [ "$is_public" = "No" ]; then
 fi
 
 # If db_name doesn't exist, create it
-if [ -z $db_name ]; then
+if [ -z "$db_name" ]; then
 	db_name=$(ynh_sanitize_dbid --db_name=$app)
 	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 fi
 
 # If final_path doesn't exist, create it
-if [ -z $final_path ]; then
+if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
@@ -61,7 +68,7 @@ ynh_print_info --message="Backing up the app before upgrading (may take a while)
 # Backup the current version of the app
 ynh_backup_before_upgrade
 ynh_clean_setup () {
-	read -p "key"# restore it if the upgrade fails
+	# restore it if the upgrade fails
 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
@@ -69,14 +76,6 @@ ynh_abort_if_errors
 
 #=================================================
 # STANDARD UPGRADE STEPS
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_print_info --message="Upgrading source files..."
-
-# Download, check integrity, uncompress and patch the source from app.src
-#ynh_setup_source --dest_dir="$final_path"
-
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -111,6 +110,13 @@ ynh_add_fpm_config --phpversion="7.2"
 
 #=================================================
 # SPECIFIC UPGRADE
+#=================================================
+# ADD SWAPP
+#=================================================
+ynh_print_info --message="Adding swap..."
+
+ynh_add_swap --size=512
+
 #=================================================
 # UPDATE COMPOSER
 #=================================================
@@ -153,6 +159,18 @@ ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/setti
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
 #=================================================
+# SET THE CRON FILE
+#=================================================
+ynh_print_info --message="Setting the cron file"
+
+cp -f ../conf/cron /etc/cron.d/$app
+
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
+
+ynh_systemd_action --service_name=cron --action=restart
+
+#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -178,7 +196,7 @@ fi
 #=================================================
 ynh_print_info --message="Reloading nginx web server..."
 
-systemctl reload nginx
+ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

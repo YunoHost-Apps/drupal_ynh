@@ -1,1 +1,6 @@
-H * * * * __APP__ /usr/bin/env PATH=__FINALPATH__/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin COLUMNS=72 drush --quiet @__APP__.prod core:cron
+SHELL=/bin/sh
+PATH=__FINALPATH__/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# m h dom mon dow user	command
+30 *	* * *	__APP__	drush --quiet @__APP__.prod core:cron
+#
