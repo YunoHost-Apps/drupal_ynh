@@ -131,6 +131,7 @@ update-alternatives --set php /usr/bin/php7.0
 #=================================================
 ynh_print_info --message="Updating Drupal..."
 
+ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/settings.php"
 export PATH="$final_path/vendor/bin:$PATH"
 
 #sudo -u $app env PATH=$PATH drush @$app.prod cache-clear all 
@@ -154,7 +155,6 @@ popd
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
 
-ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/settings.php"
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
