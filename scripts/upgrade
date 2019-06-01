@@ -118,18 +118,18 @@ ynh_print_info --message="Adding swap..."
 ynh_add_swap --size=512
 
 #=================================================
-# UPDATE COMPOSER
+# UPGRADE COMPOSER
 #=================================================
-ynh_print_info --message="Updating Composer..."
+ynh_print_info --message="Upgrading Composer..."
 
 update-alternatives --set php /usr/bin/php7.2   
 ynh_install_composer --phpversion="7.2" --workdir="$final_path"
 update-alternatives --set php /usr/bin/php7.0
 
 #=================================================
-# UPDATE DRUPAL
+# UPGRADE DRUPAL
 #=================================================
-ynh_print_info --message="Updating Drupal..."
+ynh_print_info --message="Upgrading Drupal..."
 
 ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/settings.php"
 export PATH="$final_path/vendor/bin:$PATH"
