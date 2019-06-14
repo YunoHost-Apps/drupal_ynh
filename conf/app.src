@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/drupal-composer/drupal-project/archive/9e036f02949d81a423a09ec428c3384742e6b33d.tar.gz
-SOURCE_SUM=468884a9d3b596114dd220251ce4ba5cb7fd97dcc123151b851b16617d9c1a5e
+SOURCE_URL=https://github.com/drupal-composer/drupal-project/archive/ec0f41171516c18357ca4cda9068ee4cdeabaa19.tar.gz
+SOURCE_SUM=aa94ea1e8a0cc382afb8e9f66b56af02ca7c60817403efc0e7b2a89c3dea09b8
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
