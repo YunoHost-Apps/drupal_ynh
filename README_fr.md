@@ -44,7 +44,6 @@ Le module d'authentification LDAP peut être installé
 Informations pour les développeurs
 ----------------
 
-**Seulement si vous voulez utiliser une branche de test pour le codage, au lieu de fusionner directement dans la banche principale.**
 Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
 Pour essayer la branche testing, procédez comme suit.
