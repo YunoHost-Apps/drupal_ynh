@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 ## Vue d'ensemble
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse:** 8.7.3
+**Version incluse:** 8.7.5
 
 ## Captures d'écran
 
@@ -44,7 +44,6 @@ Le module d'authentification LDAP peut être installé
 Informations pour les développeurs
 ----------------
 
-**Seulement si vous voulez utiliser une branche de test pour le codage, au lieu de fusionner directement dans la banche principale.**
 Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
 Pour essayer la branche testing, procédez comme suit.
