@@ -3,8 +3,8 @@
     "id": "drupal",
     "packaging_format": 1,
     "description": {
-        "en": "Drupal for YunoHost application.",
-        "fr": "Drupal pour YunoHost."
+        "en": "A content management framework written in PHP",
+        "fr": "Un système de gestion de contenu écrit en PHP"
     },
     "version": "8.7.5~ynh1",
     "url": "https://www.drupal.org",
