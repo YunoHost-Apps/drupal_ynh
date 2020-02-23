@@ -80,6 +80,7 @@ ynh_del_swap
 #=================================================
 # REMOVE THE CRON FILE
 #=================================================
+ynh_print_info --message="Removing the cron file..."
 
 # Remove a cron file
 ynh_secure_remove --file="/etc/cron.d/$app"
