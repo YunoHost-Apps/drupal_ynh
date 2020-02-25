@@ -28,9 +28,10 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 language=$(ynh_app_setting_get --app=$app --key=language)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
-##=================================================
+#=================================================
 # CHECK VERSION
 #=================================================
+ynh_print_info --message="Checking version..."
 
 upgrade_type=$(ynh_check_app_version_changed)
 
@@ -154,6 +155,7 @@ popd
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
+ynh_print_info --message="Storing the config file checksum..."
 
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
@@ -175,6 +177,7 @@ ynh_systemd_action --service_name=cron --action=restart
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
+ynh_print_info --message="Securing files and directories..."
 
 # Set permissions on app files
 chown -R $app: $final_path
