@@ -116,9 +116,6 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 ynh_print_info --message="Upgrading php-fpm configuration..."
 
-# Remove the dedicated php-fpm config
-ynh_remove_fpm_config
-
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --phpversion="7.3"
 
