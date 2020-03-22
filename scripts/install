@@ -121,7 +121,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# ADD SWAPP
+# ADD SWAP
 #=================================================
 ynh_print_info --message="Adding swap..."
 

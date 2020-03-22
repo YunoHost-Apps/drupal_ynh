@@ -69,7 +69,7 @@ ynh_print_info --message="Removing nginx web server configuration..."
 ynh_remove_nginx_config
 
 #=================================================
-# REMOVE SWAPP
+# REMOVE SWAP
 #=================================================
 ynh_print_info --message="Removing swap..."
 

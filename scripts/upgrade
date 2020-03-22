@@ -122,7 +122,7 @@ ynh_add_fpm_config --phpversion="7.3"
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
-# ADD SWAPP
+# ADD SWAP
 #=================================================
 ynh_print_info --message="Adding swap..."
 
