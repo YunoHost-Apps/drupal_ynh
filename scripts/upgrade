@@ -90,8 +90,13 @@ ynh_add_nginx_config
 #=================================================
 
 if [ "$(lsb_release --codename --short)" = "stretch" ]; then
-	ynh_print_info --message="Upgrading PHP7.3..."
-	ynh_install_php --phpversion="7.3" --package="$extra_pkg_dependencies"
+	if [ "$(ynh_app_setting_get --app=$app --key=php_version)" != "7.3" ]; then
+		ynh_print_info --message="Upgrading PHP7.3..."
+		ynh_remove_fpm_config
+		ynh_remove_app_dependencies
+		ynh_remove_php
+		ynh_install_php --phpversion="7.3" --package="$extra_pkg_dependencies"
+	fi
 else
 	pkg_dependencies="$pkg_dependencies $extra_pkg_dependencies"
 fi
