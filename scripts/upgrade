@@ -156,7 +156,7 @@ export PATH="$final_path/vendor/bin:$PATH"
 #sudo -u $app env PATH=$PATH drush @$app.prod l10n-update-refresh
 #sudo -u $app env PATH=$PATH drush @$app.prod l10n-update
 
-# Bypass composer issue and GitHub Rate Limit
+# Bypass composer issue and GitHub Rate Limit https://developer.github.com/v3/#rate-limiting
 if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
 	sleep 3600
 fi
