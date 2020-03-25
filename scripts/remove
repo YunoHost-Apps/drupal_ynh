@@ -73,10 +73,7 @@ ynh_remove_nginx_config
 #=================================================
 ynh_print_info --message="Removing swap..."
 
-# Don't delete not existing swap during package_check
-if [ ${PACKAGE_CHECK_EXEC:-0} -eq 0 ]; then
-	ynh_del_swap
-fi
+ynh_del_swap
 
 #=================================================
 # SPECIFIC REMOVE
