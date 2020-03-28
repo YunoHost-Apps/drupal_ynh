@@ -44,15 +44,20 @@ ynh_print_info --message="Removing php-fpm configuration..."
 ynh_remove_fpm_config
 
 #=================================================
+# REMOVE PHP
+#=================================================
+
+if [ "$(lsb_release --codename --short)" != "buster" ]; then
+	ynh_print_info --message="Removing php..."
+	ynh_remove_php
+fi
+#=================================================
 # REMOVE DEPENDENCIES
 #=================================================
 ynh_print_info --message="Removing dependencies..."
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
-if [ "$(lsb_release --codename --short)" != "buster" ]; then
-	ynh_remove_php
-fi
 
 #=================================================
 # REMOVE APP MAIN DIR

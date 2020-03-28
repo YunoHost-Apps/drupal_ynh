@@ -162,16 +162,18 @@ ynh_print_info --message="Installing Drupal..."
 
 chown -R $app: $final_path
 
-pushd "$final_path" 
-	update-alternatives --set php /usr/bin/php7.3   
+update-alternatives --set php /usr/bin/php7.3  
+
+pushd "$final_path"  
 	sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
-	update-alternatives --set php /usr/bin/php7.0
 popd
 
+update-alternatives --set php /usr/bin/php7.0
+
 #=================================================
-# SET THE CRON FILE
+# SETUP THE CRON FILE
 #=================================================
-ynh_print_info --message="Setting the cron file..."
+ynh_print_info --message="Setuping the cron file..."
 
 cp ../conf/cron /etc/cron.d/$app
 
