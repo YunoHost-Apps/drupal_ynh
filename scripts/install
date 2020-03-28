@@ -66,18 +66,22 @@ ynh_app_setting_set --app=$app --key=install_profil --value=$install_profil
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
+# INSTALL PHP7.3
+#=================================================
+
+if [ "$(lsb_release --codename --short)" = "buster" ]; then
+	pkg_dependencies="$pkg_dependencies $extra_pkg_dependencies"
+else
+	ynh_print_info --message="Installing PHP7.3..."
+	ynh_install_php --phpversion="7.3" --package="$extra_pkg_dependencies"
+fi
+
+#=================================================
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_print_info --message="Installing dependencies..."
 
 ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# INSTALL PHP
-#=================================================
-ynh_print_info --message="Installing PHP..."
-
-ynh_install_php --phpversion="7.2" --package="$extra_pkg_dependencies"
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -117,7 +121,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # SPECIFIC SETUP
 #=================================================
-# ADD SWAPP
+# ADD SWAP
 #=================================================
 ynh_print_info --message="Adding swap..."
 
@@ -147,7 +151,7 @@ mkdir -p "$final_path/.composer"
 cp -f "../conf/composer.json" "$final_path/composer.json"
 ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/composer.json"
 
-ynh_install_composer --phpversion="7.2" --workdir="$final_path"
+ynh_install_composer --phpversion="7.3" --workdir="$final_path"
 
 export PATH="$final_path/vendor/bin:$PATH"
 
@@ -159,7 +163,7 @@ ynh_print_info --message="Installing Drupal..."
 chown -R $app: $final_path
 
 pushd "$final_path" 
-	update-alternatives --set php /usr/bin/php7.2   
+	update-alternatives --set php /usr/bin/php7.3   
 	sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
 	update-alternatives --set php /usr/bin/php7.0
 popd
@@ -190,7 +194,7 @@ ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 ynh_print_info --message="Configuring php-fpm..."
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config --phpversion="7.2"
+ynh_add_fpm_config --phpversion="7.3"
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
