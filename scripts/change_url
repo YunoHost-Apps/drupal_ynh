@@ -106,12 +106,13 @@ fi
 #=================================================
 ynh_print_info --message="Updating Drush alias..."
 
-cp -f "../conf/example.site.yml" "$final_path/drush/sites/$app.site.yml"
+drush_aliasconfig="$final_path/drush/sites/$app.site.yml"
+cp -f "../conf/example.site.yml" "$drush_aliasconfig"
 
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/drush/sites/$app.site.yml"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/drush/sites/$app.site.yml"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$new_domain" --target_file="$final_path/drush/sites/$app.site.yml"
-ynh_replace_string --match_string="__PATH_URL__" --replace_string="$new_path" --target_file="$final_path/drush/sites/$app.site.yml"
+ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$drush_aliasconfig"
+ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$drush_aliasconfig"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$new_domain" --target_file="$drush_aliasconfig"
+ynh_replace_string --match_string="__PATH_URL__" --replace_string="$new_path" --target_file="$drush_aliasconfig"
 
 #=================================================
 # GENERIC FINALISATION
