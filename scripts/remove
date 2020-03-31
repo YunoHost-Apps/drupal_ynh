@@ -35,14 +35,6 @@ ynh_print_info --message="Removing the MySQL database..."
 ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# REMOVE PHP-FPM CONFIGURATION
-#=================================================
-ynh_print_info --message="Removing php-fpm configuration..."
-
-# Remove the dedicated php-fpm config
-ynh_remove_fpm_config
-
-#=================================================
 # REMOVE PHP
 #=================================================
 
@@ -73,6 +65,14 @@ ynh_print_info --message="Removing nginx web server configuration..."
 
 # Remove the dedicated nginx config
 ynh_remove_nginx_config
+
+#=================================================
+# REMOVE PHP-FPM CONFIGURATION
+#=================================================
+ynh_print_info --message="Removing php-fpm configuration..."
+
+# Remove the dedicated php-fpm config
+ynh_remove_fpm_config
 
 #=================================================
 # REMOVE SWAP
