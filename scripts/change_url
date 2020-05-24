@@ -86,7 +86,7 @@ then
 	domain="$old_domain"
 	path_url="$new_path"
 	# Create a dedicated nginx config
-	ynh_add_nginx_config YNH_PHP_VERSION
+	ynh_add_nginx_config
 fi
 
 # Change the domain for nginx
