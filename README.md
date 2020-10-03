@@ -15,7 +15,7 @@ Free and open-source content management framework.
 
 ## Screenshots
 
-![](https://www.drupal.org/files/issues/D7-screenshot.png)
+![](https://upload.wikimedia.org/wikipedia/commons/5/53/Drupal_8_quickedit.png)
 
 ## Documentation
 
