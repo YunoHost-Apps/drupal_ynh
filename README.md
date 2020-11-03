@@ -1,6 +1,6 @@
 # Drupal for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal)  
+[![Integration level](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)  
 [![Install Drupal with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=drupal)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -11,11 +11,11 @@ If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to
 ## Overview
 Free and open-source content management framework.
 
-**Shipped version:** 8.8.4
+**Shipped version:** 8.9.7
 
 ## Screenshots
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Drupal_8_quickedit.png/300px-Drupal_8_quickedit.png)
+![](https://upload.wikimedia.org/wikipedia/commons/5/53/Drupal_8_quickedit.png)
 
 ## Documentation
 
@@ -29,19 +29,19 @@ LDAP module can be installed
 
 #### Supported architectures
 
-* x86-64b - [![Build Status](https://ci-apps.yunohost.org/ci/logs/drupal%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/drupal%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/)
 * ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/drupal%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/drupal/)
 
 ## Links
 
  * Report a bug: https://github.com/YunoHost-Apps/drupal_ynh/issues
  * App website: https://www.drupal.org
+ * Upstream app repository: https://github.com/drupal-composer/drupal-project
  * YunoHost website: https://yunohost.org/
 
 ---
 
-Developers info
-----------------
+## Developers info
 
 Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
