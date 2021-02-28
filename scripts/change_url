@@ -96,6 +96,8 @@ then
 	mv $nginx_conf_path /etc/nginx/conf.d/$new_domain.d/$app.conf
 	# Store file checksum for the new config file location
 	ynh_store_file_checksum --file="/etc/nginx/conf.d/$new_domain.d/$app.conf"
+	domain="$new_domain"
+	path_url="$new_path"
 fi
 
 #=================================================
@@ -105,13 +107,7 @@ fi
 #=================================================
 ynh_script_progression --message="Updating Drush alias..."
 
-drush_aliasconfig="$final_path/drush/sites/$app.site.yml"
-cp -f "../conf/example.site.yml" "$drush_aliasconfig"
-
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$new_domain" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__PATH_URL__" --replace_string="$new_path" --target_file="$drush_aliasconfig"
+ynh_add_config --template="../conf/example.site.yml" --destination="$final_path/drush/sites/$app.site.yml"
 
 #=================================================
 # GENERIC FINALISATION
