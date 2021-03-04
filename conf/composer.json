@@ -65,7 +65,7 @@
         },
         "drupal-scaffold": {
             "locations": {
-                "web-root": "web__APP__"
+                "web-root": "__APP__/"
             }
         },
         "installer-paths": {
@@ -74,7 +74,7 @@
             "__APP__/modules/contrib/{$name}": ["type:drupal-module"],
             "__APP__/profiles/contrib/{$name}": ["type:drupal-profile"],
             "__APP__/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/{$name}": ["type:drupal-drush"]
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
         }
     }
 }
