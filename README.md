@@ -1,12 +1,12 @@
 # Drupal for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)  
-[![Install Drupal with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=drupal)
+[![Install Drupal with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
-> *This package allow you to install Drupal quickly and simply on a YunoHost server.  
-If you don't have YunoHost, please see [here](https://yunohost.org/#/install) to know how to install and enjoy it.*
+> *This package allows you to install Drupal quickly and simply on a YunoHost server.  
+If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
 Free and open-source content management framework.
@@ -23,7 +23,7 @@ Free and open-source content management framework.
 
 ## YunoHost specific features
 
-#### Multi-users support
+#### Multi-user support
 
 LDAP module can be installed
 
@@ -41,9 +41,9 @@ LDAP module can be installed
 
 ---
 
-## Developers info
+## Developer info
 
-Please do your pull request to the [testing branch](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
+Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
 ```

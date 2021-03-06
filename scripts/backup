@@ -57,7 +57,6 @@ ynh_backup --src_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 #=================================================
 # BACKUP A CRON FILE
 #=================================================
-ynh_print_info --message="Backing up a cron file..."
 
 ynh_backup --src_path="/etc/cron.d/$app"
 
