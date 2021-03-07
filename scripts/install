@@ -55,7 +55,6 @@ ynh_script_progression --message="Storing installation settings..."
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
-ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 ynh_app_setting_set --app=$app --key=language --value=$language
 ynh_app_setting_set --app=$app --key=install_profil --value=$install_profil
 
@@ -112,13 +111,14 @@ ynh_script_progression --message="Configuring php-fpm..."
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # SPECIFIC SETUP
 #=================================================
 # ADD SWAP
 #=================================================
-ynh_print_info --message="Adding swap..."
+ynh_script_progression --message="Adding swap..."
 
 ynh_add_swap --size=$swap_needed
 
@@ -128,13 +128,7 @@ ynh_add_swap --size=$swap_needed
 ynh_script_progression --message="Creating Drush alias..."
 
 mkdir -p "$final_path/drush/sites/"
-drush_aliasconfig="$final_path/drush/sites/$app.site.yml"
-cp -f "../conf/example.site.yml" "$drush_aliasconfig"
-
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$drush_aliasconfig"
-ynh_replace_string --match_string="__PATH_URL__" --replace_string="$path_url" --target_file="$drush_aliasconfig"
+ynh_add_config --template="../conf/example.site.yml" --destination="$final_path/drush/sites/$app.site.yml"
 
 #=================================================
 # INSTALL COMPOSER
@@ -142,11 +136,9 @@ ynh_replace_string --match_string="__PATH_URL__" --replace_string="$path_url" --
 ynh_script_progression --message="Installing Composer..."
 
 mkdir -p "$final_path/.composer"
+ynh_add_config --template="../conf/composer.json" --destination="$final_path/composer.json"
 
-cp -f "../conf/composer.json" "$final_path/composer.json"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/composer.json"
-
-ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path"
+ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
 export PATH="$final_path/vendor/bin:$PATH"
 
@@ -157,7 +149,7 @@ ynh_script_progression --message="Installing Drupal..."
 
 chown -R $app: $final_path
 
-update-alternatives --set php /usr/bin/php${YNH_PHP_VERSION}
+update-alternatives --set php /usr/bin/php$phpversion
 
 pushd "$final_path"
 	sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
@@ -170,10 +162,7 @@ update-alternatives --set php /usr/bin/php${YNH_DEFAULT_PHP_VERSION}
 #=================================================
 ynh_script_progression --message="Setuping the cron file..."
 
-cp ../conf/cron /etc/cron.d/$app
-
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="/etc/cron.d/$app"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="/etc/cron.d/$app"
+ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
@@ -196,13 +185,14 @@ chown -R $app: $final_path
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..."
+ynh_script_progression --message="Configuring permissions..."
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
-	# unprotected_uris allows SSO credentials to be passed anyway.
-	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================
