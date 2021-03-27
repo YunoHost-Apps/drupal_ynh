@@ -152,7 +152,7 @@ chown -R $app: $final_path
 update-alternatives --set php /usr/bin/php$phpversion
 
 pushd "$final_path"
-	sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
+	ynh_exec_warn_less sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
 popd
 
 update-alternatives --set php /usr/bin/php${YNH_DEFAULT_PHP_VERSION}
