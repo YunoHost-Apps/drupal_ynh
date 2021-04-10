@@ -139,6 +139,9 @@ ynh_script_progression --message="Storing the config file checksum..."
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
+chmod 400 "$final_path/$app/sites/default/settings.php"
+chown $app:$app "$final_path/$app/sites/default/settings.php"
+
 #=================================================
 # SETUP THE CRON FILE
 #=================================================

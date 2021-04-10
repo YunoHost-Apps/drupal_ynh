@@ -16,7 +16,7 @@
 		setup_public=1
 		upgrade=1
 		# 8.7.1~ynh1
-		# upgrade=1	from_commit=f0af5b7a8e58615fe8ad73e3c1d6fe8d1369f061
+		#upgrade=1	from_commit=f0af5b7a8e58615fe8ad73e3c1d6fe8d1369f061
 		# 8.9.7~ynh1
 		upgrade=1	from_commit=08ca36cc16691ed64a11034c810f5adefb21186a
 		backup_restore=1
