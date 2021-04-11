@@ -65,14 +65,14 @@ ynh_script_progression --message="Removing PHP-FPM configuration..."
 ynh_remove_fpm_config
 
 #=================================================
+# SPECIFIC REMOVE
+#=================================================
 # REMOVE SWAP
 #=================================================
 ynh_script_progression --message="Removing swap..."
 
 ynh_del_swap
 
-#=================================================
-# SPECIFIC REMOVE
 #=================================================
 # REMOVE THE CRON FILE
 #=================================================
