@@ -131,6 +131,10 @@ ynh_script_progression --message="Upgrading Drupal..."
 
 ynh_backup_if_checksum_is_different --file="$final_path/$app/sites/default/settings.php"
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 update-alternatives --set php /usr/bin/php$phpversion
 
 pushd "$final_path"
