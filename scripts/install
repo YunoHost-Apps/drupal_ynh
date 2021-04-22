@@ -68,6 +68,14 @@ ynh_script_progression --message="Installing dependencies..."
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..."
+
+# Create a system user
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
 ynh_script_progression --message="Creating a MySQL database..."
@@ -88,28 +96,24 @@ ynh_setup_source --dest_dir="$final_path"
 
 mkdir -p "$final_path/$app"
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..."
+ynh_script_progression --message="Configuring NGINX web server..."
 
-# Create a dedicated nginx config
+# Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..."
-
-# Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring php-fpm..."
+ynh_script_progression --message="Configuring PHP-FPM..."
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
@@ -147,7 +151,9 @@ export PATH="$final_path/vendor/bin:$PATH"
 #=================================================
 ynh_script_progression --message="Installing Drupal..."
 
-chown -R $app: $final_path
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 update-alternatives --set php /usr/bin/php$phpversion
 
@@ -172,16 +178,11 @@ ynh_script_progression --message="Storing the config file checksum..."
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$final_path/$app/sites/default/settings.php"
 
+chmod 400 "$final_path/$app/sites/default/settings.php"
+chown $app:$app "$final_path/$app/sites/default/settings.php"
+
 #=================================================
 # GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..."
-
-# Set permissions to app files
-chown -R $app: $final_path
-
 #=================================================
 # SETUP SSOWAT
 #=================================================
@@ -198,7 +199,7 @@ fi
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..."
+ynh_script_progression --message="Reloading NGINX web server..."
 
 ynh_systemd_action --service_name=nginx --action=reload
 

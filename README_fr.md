@@ -29,8 +29,8 @@ Le module d'authentification LDAP peut être installé.
 
 #### Architectures supportées
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/drupal%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/drupal%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/drupal/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/drupal.svg)](https://ci-apps-arm.yunohost.org/ci/apps/drupal/)
 
 ## Liens
 
