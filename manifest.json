@@ -6,14 +6,14 @@
         "en": "A content management framework written in PHP",
         "fr": "Un système de gestion de contenu écrit en PHP"
     },
-    "version": "8.9.7~ynh2",
+    "version": "8.9.15~ynh1",
     "url": "https://www.drupal.org",
     "license": "GPL-2.0-or-later",
     "maintainer": {
         "name": "yalh76"
     },
     "requirements": {
-        "yunohost": ">= 4.1.7.3"
+        "yunohost": ">= 4.2.0"
     },
     "multi_instance": true,
     "services": [
