@@ -6,14 +6,20 @@
         "en": "A content management framework written in PHP",
         "fr": "Un système de gestion de contenu écrit en PHP"
     },
-    "version": "8.9.15~ynh1",
+    "version": "8.9.20~ynh1",
     "url": "https://www.drupal.org",
+    "upstream": {
+        "license": "GPL-2.0-or-later",
+        "website": "https://www.drupal.org",
+        "admindoc": "https://www.drupal.org/docs/8",
+        "code": "https://github.com/drupal-composer/drupal-project"
+    },
     "license": "GPL-2.0-or-later",
     "maintainer": {
         "name": "yalh76"
     },
     "requirements": {
-        "yunohost": ">= 4.2.0"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
@@ -25,8 +31,7 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "example.com"
+                "type": "domain"
             },
             {
                 "name": "path",
@@ -36,8 +41,7 @@
             },
             {
                 "name": "admin",
-                "type": "user",
-                "example": "johndoe"
+                "type": "user"
             },
             {
                 "name": "is_public",
