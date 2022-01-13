@@ -72,7 +72,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir="$final_path"
+ynh_system_user_create --username=$app --home_dir=$final_path
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -157,7 +157,7 @@ chown -R $app:www-data "$final_path"
 update-alternatives --set php /usr/bin/php$phpversion
 
 pushd "$final_path"
-	ynh_exec_warn_less sudo -u $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
+	ynh_exec_warn_less ynh_exec_as $app env PATH=$PATH drush site:install $install_profil --account-name=$admin --account-pass=$password --account-mail=$admin_mail --db-url=mysql://$db_user:$db_pwd@localhost/$db_name --site-name="$app" --locale=$language --yes
 popd
 
 update-alternatives --set php /usr/bin/php${YNH_DEFAULT_PHP_VERSION}
