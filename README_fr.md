@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 8.9.20~ynh1
+**Version incluse :** 9.3.5~ynh1
 
 
 
