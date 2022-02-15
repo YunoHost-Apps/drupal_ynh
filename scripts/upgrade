@@ -119,6 +119,9 @@ ynh_add_swap --size=$swap_needed
 #=================================================
 ynh_script_progression --message="Upgrading Composer..."
 
+mkdir -p "$final_path/.composer"
+ynh_add_config --template="../conf/composer.json" --destination="$final_path/composer.json"
+
 ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
 
 export PATH="$final_path/vendor/bin:$PATH"
