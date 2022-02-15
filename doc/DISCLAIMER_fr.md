@@ -1,1 +1,1 @@
-* Le module d'authentification LDAP peut être installé.
+* Le module d'authentification LDAP peut Ãªtre installÃ©.
