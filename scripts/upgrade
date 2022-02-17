@@ -122,7 +122,7 @@ ynh_script_progression --message="Upgrading Composer..."
 mkdir -p "$final_path/.composer"
 ynh_add_config --template="../conf/composer.json" --destination="$final_path/composer.json"
 
-ynh_install_composer --phpversion="$phpversion" --workdir="$final_path"
+ynh_exec_warn_less ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands="update"
 
 export PATH="$final_path/vendor/bin:$PATH"
 
