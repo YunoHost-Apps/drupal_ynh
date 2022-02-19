@@ -16,13 +16,15 @@
 		setup_public=1
 		upgrade=1
 		# 8.7.1~ynh1
-		#upgrade=1	from_commit=f0af5b7a8e58615fe8ad73e3c1d6fe8d1369f061
+		# upgrade=1	from_commit=f0af5b7a8e58615fe8ad73e3c1d6fe8d1369f061
 		# 8.9.7~ynh1
 		upgrade=1	from_commit=08ca36cc16691ed64a11034c810f5adefb21186a
 		# 8.9.7~ynh2
 		upgrade=1	from_commit=69b57e0d7cd862e4e5aef0bfc2bc2634874602c4
 		# 8.9.15~ynh1
 		upgrade=1	from_commit=06baed57a0650ec9a9e4e0f3348298065c1207f2
+		# 8.9.20~ynh1
+		upgrade=1	from_commit=25e747e0cde5e9ae2005181946f7f6cd31c597a5
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
@@ -39,3 +41,5 @@ Notification=all
 		name=8.9.7~ynh2
 	; commit=06baed57a0650ec9a9e4e0f3348298065c1207f2
 		name=8.9.15~ynh1
+	; commit=25e747e0cde5e9ae2005181946f7f6cd31c597a5
+		name=8.9.20~ynh1
