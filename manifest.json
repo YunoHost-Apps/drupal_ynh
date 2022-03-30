@@ -6,7 +6,7 @@
         "en": "A content management framework written in PHP",
         "fr": "Un système de gestion de contenu écrit en PHP"
     },
-    "version": "9.3.5~ynh1",
+    "version": "9.3.9~ynh1",
     "url": "https://www.drupal.org",
     "upstream": {
         "license": "GPL-2.0-or-later",
