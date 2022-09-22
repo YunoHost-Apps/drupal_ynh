@@ -12,7 +12,7 @@
         "license": "GPL-2.0-or-later",
         "website": "https://www.drupal.org",
         "admindoc": "https://www.drupal.org/docs/8",
-        "code": "https://github.com/drupal-composer/drupal-project"
+        "code": "https://github.com/drupal/drupal"
     },
     "license": "GPL-2.0-or-later",
     "maintainer": {
@@ -28,7 +28,7 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
                 "type": "domain"
@@ -38,10 +38,6 @@
                 "type": "path",
                 "example": "/drupal",
                 "default": "/drupal"
-            },
-            {
-                "name": "admin",
-                "type": "user"
             },
             {
                 "name": "is_public",
@@ -57,6 +53,10 @@
                 },
                 "choices": ["fr", "en"],
                 "default": "en"
+            },
+            {
+                "name": "admin",
+                "type": "user"
             },
             {
                 "name": "password",
