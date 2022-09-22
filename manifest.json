@@ -6,7 +6,7 @@
         "en": "A content management framework written in PHP",
         "fr": "Un système de gestion de contenu écrit en PHP"
     },
-    "version": "9.3.9~ynh1",
+    "version": "9.4.6~ynh1",
     "url": "https://www.drupal.org",
     "upstream": {
         "license": "GPL-2.0-or-later",
@@ -51,7 +51,10 @@
                     "en": "Choose the application language",
                     "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["fr", "en"],
+                "choices": [
+                    "fr",
+                    "en"
+                ],
                 "default": "en"
             },
             {
@@ -74,7 +77,10 @@
                     "en": "Choose the Drupal install profile to use",
                     "fr": "Choisissez le profile d'installation de Drupal"
                 },
-                "choices": ["minimal", "standard"],
+                "choices": [
+                    "minimal",
+                    "standard"
+                ],
                 "default": "standard"
             }
         ]
