@@ -17,7 +17,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 9.4.7~ynh1
+**Version incluse :** 9.4.7~ynh1 *(:warning: Il s'agit de la branche `testing`. La [branche `master`](https://github.com/YunoHost-Apps/drupal_ynh/tree/master) utilisée dans le catalogue est actuellement en 9.4.6\~ynh2.)*
 
 
 ## Captures d'écran
