@@ -16,11 +16,13 @@
 		setup_public=1
 		upgrade=1
 		# 8.9.7~ynh2
-		upgrade=1	from_commit=69b57e0d7cd862e4e5aef0bfc2bc2634874602c4
+		upgrade=0	from_commit=69b57e0d7cd862e4e5aef0bfc2bc2634874602c4
 		# 8.9.15~ynh1
-		upgrade=1	from_commit=06baed57a0650ec9a9e4e0f3348298065c1207f2
+		upgrade=0	from_commit=06baed57a0650ec9a9e4e0f3348298065c1207f2
 		# 8.9.20~ynh1
-		upgrade=1	from_commit=25e747e0cde5e9ae2005181946f7f6cd31c597a5
+		upgrade=0	from_commit=25e747e0cde5e9ae2005181946f7f6cd31c597a5
+		# 9.4.6~ynh2
+		upgrade=1	from_commit=bc57252858ce9402412ecccf82de2c2e2be67294
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
