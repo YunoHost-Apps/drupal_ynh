@@ -3,8 +3,8 @@
     "id": "drupal",
     "packaging_format": 1,
     "description": {
-        "en": "A content management framework written in PHP",
-        "fr": "Un système de gestion de contenu écrit en PHP"
+        "en": "Content management framework",
+        "fr": "Système de gestion de contenu"
     },
     "version": "9.5.0~ynh1",
     "url": "https://www.drupal.org",
@@ -63,8 +63,7 @@
             },
             {
                 "name": "password",
-                "type": "password",
-                "example": "Choose a password"
+                "type": "password"
             },
             {
                 "name": "install_profil",
