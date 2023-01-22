@@ -5,23 +5,23 @@ It shall NOT be edited by hand.
 
 # Drupal pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)  
 [![Installer Drupal avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Drupal rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Drupal rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 9.5.0~ynh1
+**Version incluse :** 9.5.2~ynh1
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Drupal](./doc/screenshots/screenshot.png)
+![Capture d’écran de Drupal](./doc/screenshots/screenshot.png)
 
 ## Avertissements / informations importantes
 
@@ -29,9 +29,9 @@ Framework de gestion de contenu libre et open-source.
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://www.drupal.org>
-* Documentation officielle de l'admin : <https://www.drupal.org/docs/8>
-* Dépôt de code officiel de l'app : <https://github.com/drupal/drupal>
+* Site officiel de l’app : <https://www.drupal.org>
+* Documentation officielle de l’admin : <https://www.drupal.org/docs/8>
+* Dépôt de code officiel de l’app : <https://github.com/drupal/drupal>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_drupal>
 * Signaler un bug : <https://github.com/YunoHost-Apps/drupal_ynh/issues>
 
@@ -47,4 +47,4 @@ ou
 sudo yunohost app upgrade drupal -u https://github.com/YunoHost-Apps/drupal_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
