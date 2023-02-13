@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Drupal pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+
 [![Installer Drupal avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
 *[Read this readme in english.](./README.md)*
