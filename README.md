@@ -18,7 +18,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Free and open-source content management framework.
 
-**Shipped version:** 9.5.3~ynh1
+**Shipped version:** 9.5.4~ynh1
 
 ## Screenshots
 
