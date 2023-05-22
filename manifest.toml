@@ -7,7 +7,7 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "9.5.10~ynh2"
+version = "9.5.3~ynh3"
 
 maintainers = ["yalh76"]
 
@@ -85,10 +85,8 @@ ram.runtime = "50M"
         "php8.2-xml",
         "php8.2-ldap",
         "php8.2-mbstring",
-        "php8.2-json",
         "php8.2-simplexml",
         "php8.2-curl",
-        "php8.2-readline",
     ]
 
     [resources.database]

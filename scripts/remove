@@ -24,11 +24,6 @@ ynh_remove_fpm_config
 # Remove the cron file
 ynh_secure_remove --file="/etc/cron.d/$app"
 
-#=================================================
-# REMOVE SWAP
-#=================================================
-ynh_script_progression --message="Removing swap..."
-
 ynh_del_swap
 
 #=================================================
