@@ -24,10 +24,6 @@ Free and open-source content management framework.
 
 ![Screenshot of Drupal](./doc/screenshots/screenshot.png)
 
-## Disclaimers / important information
-
-* LDAP module can be installed
-
 ## Documentation and resources
 
 * Official app website: <https://www.drupal.org>

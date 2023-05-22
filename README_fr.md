@@ -24,10 +24,6 @@ Framework de gestion de contenu libre et open-source.
 
 ![Capture d’écran de Drupal](./doc/screenshots/screenshot.png)
 
-## Avertissements / informations importantes
-
-* Le module d'authentification LDAP peut être installé.
-
 ## Documentations et ressources
 
 * Site officiel de l’app : <https://www.drupal.org>
