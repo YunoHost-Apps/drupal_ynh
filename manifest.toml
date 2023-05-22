@@ -5,7 +5,7 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "9.5.8~ynh1"
+version = "10.0.0~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -59,8 +59,8 @@ ram.runtime = "50M"
 
 [resources]
         [resources.sources.main]
-        url = "https://github.com/drupal-composer/drupal-project/archive/7ed1e4f3006375cc4918ad24ad8b1ec16d61434e.tar.gz"
-        sha256 = "d76b7bb92df9a9eccd2b1ac87b529224baeff7defce62ec813a9890b1cbd3936"
+        url = "https://github.com/drupal-composer/drupal-project/archive/a1bb2c4dd1e54ce6b9170dc666e6d543474dd57b.tar.gz"
+        sha256 = "992ae211565e8392910b58ddbd17aff7f9627430140d8c2134499a02a900cd57"
         autoupdate.upstream = "https://github.com/drupal-composer/drupal-project"
         autoupdate.strategy = "latest_github_commit"
 
@@ -72,7 +72,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "mariadb-server curl php8.0-fpm php8.0-cli php8.0-gd php8.0-mysql php8.0-xml php8.0-ldap php8.0-mbstring php8.0-simplexml php8.0-curl"
+    packages = "mariadb-server curl php8.2-fpm php8.2-cli php8.2-gd php8.2-mysql php8.2-xml php8.2-ldap php8.2-mbstring php8.2-simplexml php8.2-curl"
 
     [resources.database]
     type = "mysql"
