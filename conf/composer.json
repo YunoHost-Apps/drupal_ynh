@@ -1,13 +1,14 @@
 {
-    "name": "drupal/legacy-project",
-    "description": "Project template for Drupal projects with composer following drupal/drupal layout",
+    "name": "drupal-composer/drupal-project",
+    "description": "Project template for Drupal 10 projects with Composer",
     "type": "project",
     "license": "GPL-2.0-or-later",
-    "homepage": "https://www.drupal.org/project/drupal",
-    "support": {
-        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
-        "chat": "https://www.drupal.org/node/314178"
-    },
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
     "repositories": [
         {
             "type": "composer",
@@ -15,27 +16,53 @@
         }
     ],
     "require": {
-        "composer/installers": "^2.0",
-        "drupal/core-composer-scaffold": "^10.0",
-        "drupal/core-project-message": "^10.0",
-        "drupal/core-recommended": "^10.0",
-        "drupal/core-vendor-hardening": "^10.0"
+        "php": ">=8.1",
+        "composer/installers": "^2.1",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/core-composer-scaffold": "^10.0.0",
+        "drupal/core-recommended": "^10.0.0",
+        "drush/drush": "^11.4.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10.0.0"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "discard-changes": true,
+        "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true,
-            "drupal/core-vendor-hardening": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        },
-        "sort-packages": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
     },
     "extra": {
         "drupal-scaffold": {
@@ -44,54 +71,18 @@
             }
         },
         "installer-paths": {
-            "core": [
-                "type:drupal-core"
-            ],
-            "libraries/{$name}": [
-                "type:drupal-library"
-            ],
-            "modules/contrib/{$name}": [
-                "type:drupal-module"
-            ],
-            "profiles/contrib/{$name}": [
-                "type:drupal-profile"
-            ],
-            "themes/contrib/{$name}": [
-                "type:drupal-theme"
-            ],
-            "drush/Commands/contrib/{$name}": [
-                "type:drupal-drush"
-            ],
-            "modules/custom/{$name}": [
-                "type:drupal-custom-module"
-            ],
-            "profiles/custom/{$name}": [
-                "type:drupal-custom-profile"
-            ],
-            "themes/custom/{$name}": [
-                "type:drupal-custom-theme"
-            ]
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
         },
-        "drupal-core-project-message": {
-            "include-keys": [
-                "homepage",
-                "support"
-            ],
-            "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/legacy-project template!               </>",
-                "<bg=blue;fg=white>                                                         </>",
-                "",
-                "<bg=yellow;fg=black>Next steps</>:",
-                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
-                "  * Remove the plugin that prints this message:",
-                "      composer remove drupal/core-project-message"
-            ]
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
         }
     }
 }
