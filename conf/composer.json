@@ -71,12 +71,21 @@
             }
         },
         "installer-paths": {
-            "web/core": ["type:drupal-core"],
+            "__APP__/core": ["type:drupal-core"],
+            "__APP__/libraries/{$name}": ["type:drupal-library"],
+            "__APP__/modules/contrib/{$name}": ["type:drupal-module"],
+            "__APP__/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "__APP__/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "__APP__/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "__APP__/themes/custom/{$name}": ["type:drupal-custom-theme"],
+             "web/core": ["type:drupal-core"],
             "web/libraries/{$name}": ["type:drupal-library"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
+        },
         },
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
