@@ -6,7 +6,7 @@
         "en": "Content management framework",
         "fr": "Système de gestion de contenu"
     },
-    "version": "9.5.8~ynh1",
+    "version": "9.5.10~ynh1",
     "url": "https://www.drupal.org",
     "upstream": {
         "license": "GPL-2.0-or-later",
