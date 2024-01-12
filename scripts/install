@@ -27,7 +27,7 @@ ynh_setup_source --dest_dir="$install_dir"
 mkdir -p "$install_dir/$app"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -77,9 +77,7 @@ export PATH="$install_dir/vendor/bin:$PATH"
 ynh_script_progression --message="Installing Drupal..." --weight=1
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-
-update-alternatives --set php /usr/bin/php$phpversion
+chown -R "$app:www-data" "$install_dir"
 
 pushd "$install_dir"
     ynh_exec_warn_less ynh_exec_as $app \
@@ -112,7 +110,7 @@ ynh_script_progression --message="Storing the config file checksum..." --weight=
 ynh_store_file_checksum --file="$install_dir/$app/sites/default/settings.php"
 
 chmod 400 "$install_dir/$app/sites/default/settings.php"
-chown $app:$app "$install_dir/$app/sites/default/settings.php"
+chown "$app:$app" "$install_dir/$app/sites/default/settings.php"
 
 #=================================================
 # END OF SCRIPT

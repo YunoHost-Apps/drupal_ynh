@@ -29,7 +29,7 @@ ynh_store_file_checksum --file="$install_dir/composer.json"
 mkdir -p "$install_dir/$app"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -73,7 +73,7 @@ ynh_script_progression --message="Upgrading Drupal..." --weight=1
 ynh_backup_if_checksum_is_different --file="$install_dir/$app/sites/default/settings.php"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 update-alternatives --set php /usr/bin/php$phpversion
 
