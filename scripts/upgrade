@@ -56,7 +56,7 @@ fi
 #=================================================
 # UPGRADE COMPOSER
 #=================================================
-ynh_script_progression --message="Upgrading Composer..." --weight=1
+ynh_script_progression --message="Upgrading Composer..." --weight=3
 
 mkdir -p "$install_dir/.composer"
 ynh_add_config --template="../conf/composer.json" --destination="$install_dir/composer.json"
@@ -68,7 +68,7 @@ export PATH="$install_dir/vendor/bin:$PATH"
 #=================================================
 # UPGRADE DRUPAL
 #=================================================
-ynh_script_progression --message="Upgrading Drupal..." --weight=1
+ynh_script_progression --message="Upgrading Drupal..." --weight=3
 
 ynh_backup_if_checksum_is_different --file="$install_dir/$app/sites/default/settings.php"
 
@@ -102,7 +102,7 @@ chown $app:$app "$install_dir/$app/sites/default/settings.php"
 #=================================================
 # SETUP THE CRON FILE
 #=================================================
-ynh_script_progression --message="Setuping the cron file" --weight=1
+ynh_script_progression --message="Setting up the cron file" --weight=1
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 

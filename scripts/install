@@ -62,7 +62,7 @@ ynh_add_config --template="../conf/example.site.yml" --destination="$install_dir
 #=================================================
 # INSTALL COMPOSER
 #=================================================
-ynh_script_progression --message="Installing Composer..." --weight=1
+ynh_script_progression --message="Installing Composer..." --weight=3
 
 mkdir -p "$install_dir/.composer"
 ynh_add_config --template="../conf/composer.json" --destination="$install_dir/composer.json"
@@ -74,7 +74,7 @@ export PATH="$install_dir/vendor/bin:$PATH"
 #=================================================
 # INSTALL DRUPAL
 #=================================================
-ynh_script_progression --message="Installing Drupal..." --weight=1
+ynh_script_progression --message="Installing Drupal..." --weight=5
 
 chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
@@ -97,7 +97,7 @@ update-alternatives --set php /usr/bin/php${YNH_DEFAULT_PHP_VERSION}
 #=================================================
 # SETUP THE CRON FILE
 #=================================================
-ynh_script_progression --message="Setuping the cron file..." --weight=1
+ynh_script_progression --message="Setting up the cron file..." --weight=1
 
 ynh_add_config --template="../conf/cron" --destination="/etc/cron.d/$app"
 
