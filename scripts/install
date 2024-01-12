@@ -87,7 +87,7 @@ pushd "$install_dir"
         --account-mail="$admin_mail" \
         --db-url="mysql://$db_user:$db_pwd@localhost/$db_name" \
         --site-name="$app" \
-        --locale=$language \
+        --locale="$language" \
         --yes
 popd
 
