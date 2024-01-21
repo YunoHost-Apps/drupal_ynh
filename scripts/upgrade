@@ -77,8 +77,8 @@ chown -R "$app:www-data" "$install_dir"
 
 pushd "$install_dir"
     _ynh_exec_with_drush_php drush "@$app.prod" state:set system.maintenance_mode 1 --input-format=integer
-    _ynh_exec_with_drush_php php composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
-    _ynh_exec_with_drush_php php composer.phar update --with-dependencies
+    _ynh_exec_with_drush_php "php$phpversion" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
+    _ynh_exec_with_drush_php "php$phpversion" composer.phar update --with-dependencies
     _ynh_exec_with_drush_php drush "@$app.prod" -y updatedb
     _ynh_exec_with_drush_php drush "@$app.prod" cache:rebuild
     _ynh_exec_with_drush_php drush "@$app.prod" state:set system.maintenance_mode 0 --input-format=integer
