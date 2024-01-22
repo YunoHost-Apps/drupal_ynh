@@ -1,0 +1,95 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "drupal"
+name = "Drupal"
+description.en = "Content management framework"
+description.fr = "Système de gestion de contenu"
+
+version = "9.5.10~ynh2"
+
+maintainers = ["yalh76"]
+
+[upstream]
+license = "GPL-2.0-or-later"
+website = "https://www.drupal.org"
+admindoc = "https://www.drupal.org/docs/8"
+code = "https://github.com/drupal/drupal"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "2G"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/drupal"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "select"
+    choices = ["fr", "en"]
+    default = "en"
+
+    [install.admin]
+    type = "user"
+
+    [install.password]
+    type = "password"
+
+    [install.install_profil]
+    ask.en = "Choose the Drupal install profile to use"
+    ask.fr = "Choisissez le profile d'installation de Drupal"
+    type = "select"
+    choices = ["minimal", "standard"]
+    default = "standard"
+
+[resources]
+    [resources.sources.main]
+    url = "https://github.com/drupal-composer/drupal-project/archive/137b38fa130fe801dafaac91114b3c30bd9c02c0.tar.gz"
+    sha256 = "0b275c8aa8e9153095544c351c32c5fed6363a3c67655a62693d213e3efbd564"
+
+    autoupdate.upstream = "https://github.com/drupal-composer/drupal-project"
+    autoupdate.strategy = "latest_github_commit"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = [
+        "mariadb-server",
+        "curl",
+        "php8.2-fpm",
+        "php8.2-cli",
+        "php8.2-gd",
+        "php8.2-mysql",
+        "php8.2-xml",
+        "php8.2-ldap",
+        "php8.2-mbstring",
+        "php8.2-json",
+        "php8.2-simplexml",
+        "php8.2-curl",
+        "php8.2-readline",
+    ]
+
+    [resources.database]
+    type = "mysql"
