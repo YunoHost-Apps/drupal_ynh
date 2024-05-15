@@ -18,7 +18,7 @@
 
 Free and open-source content management framework.
 
-**分发版本：** 2024.05.08~ynh1
+**分发版本：** 2024.05.14~ynh1
 
 ## 截图
 
