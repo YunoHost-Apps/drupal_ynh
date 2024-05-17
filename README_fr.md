@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 2024.05.14~ynh1
+**Version incluse :** 2024.05.15~ynh1
 
 ## Captures d’écran
 
