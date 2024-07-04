@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Drupal pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/drupal.svg)](https://dash.yunohost.org/appci/app/drupal) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
 
 [![Installer Drupal avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 2024.06.07~ynh1
+**Version incluse :** 2024.07.02~ynh1
 
 ## Captures d’écran
 
