@@ -7,7 +7,7 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "2024.07.02~ynh1"
+version = "2024.07.03~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -61,8 +61,8 @@ ram.runtime = "50M"
 
 [resources]
     [resources.sources.main]
-    url = "https://github.com/drupal-composer/drupal-project/archive/428eaee7c7a8d8a6a758039a38395f7f3d7502de.tar.gz"
-    sha256 = "d87f5a850b35e04410284b25d2ea7f6f1b9483f7e5f316b478c09c366a04ba85"
+    url = "https://github.com/drupal-composer/drupal-project/archive/f57a511f2c5a078c0669cf7d5a2b7ae0f9696759.tar.gz"
+    sha256 = "f0a952d6bc2870807d3f6cd36ecfe10682e078d9e7646a016d9a94d955a6ba3c"
 
     autoupdate.upstream = "https://github.com/drupal-composer/drupal-project"
     autoupdate.strategy = "latest_github_commit"
