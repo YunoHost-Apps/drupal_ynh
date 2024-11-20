@@ -16,7 +16,7 @@ license = "GPL-2.0-or-later"
 website = "https://www.drupal.org"
 admindoc = "https://www.drupal.org/docs/8"
 code = "https://github.com/drupal/drupal"
-cpe = "cpe:2.3:a:drupal:drupal:*:*:*:*:*:*:*:*"
+cpe = "cpe:2.3:a:drupal:drupal"
 
 fund = "https://www.drupal.org/association/donate"
 
