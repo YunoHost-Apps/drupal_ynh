@@ -16,13 +16,20 @@ license = "GPL-2.0-or-later"
 website = "https://www.drupal.org"
 admindoc = "https://www.drupal.org/docs/8"
 code = "https://github.com/drupal/drupal"
+cpe = "cpe:2.3:a:drupal:drupal:*:*:*:*:*:*:*:*"
+
+fund = "https://www.drupal.org/association/donate"
 
 [integration]
 yunohost = ">= 11.2"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
 ram.build = "2G"
 ram.runtime = "50M"
@@ -60,6 +67,9 @@ ram.runtime = "50M"
     default = "standard"
 
 [resources]
+
+    [resources.sources]
+
     [resources.sources.main]
     url = "https://github.com/drupal-composer/drupal-project/archive/f57a511f2c5a078c0669cf7d5a2b7ae0f9696759.tar.gz"
     sha256 = "f0a952d6bc2870807d3f6cd36ecfe10682e078d9e7646a016d9a94d955a6ba3c"
