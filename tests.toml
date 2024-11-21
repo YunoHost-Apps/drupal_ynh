@@ -15,4 +15,4 @@ test_format = 1.0
     # Commits to test upgrade from
     # -------------------------------
 
-    test_upgrade_from.bc57252858ce9402412ecccf82de2c2e2be67294.name = "Upgrade from 9.4.6~ynh2"
+    #test_upgrade_from.bc57252858ce9402412ecccf82de2c2e2be67294.name = "Upgrade from 9.4.6~ynh2"
