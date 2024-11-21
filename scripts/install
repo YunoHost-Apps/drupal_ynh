@@ -12,6 +12,9 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 admin_mail=$(ynh_user_get_info --username=$admin --key=mail)
+ynh_app_setting_set --key=php_upload_max_filesize --value=512M
+ynh_app_setting_set --key=php_post_max_size --value=512M
+ynh_app_setting_set --key=php_memory_limit --value=512M
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -21,10 +24,7 @@ ynh_script_progression "Setting up source files..."
 # Download, check integrity, uncompress and patch the source from manifest.toml
 ynh_setup_source --dest_dir="$install_dir"
 
-mkdir -p "$install_dir/$app"
-
-chmod -R o-rwx "$install_dir"
-chown -R "$app:www-data" "$install_dir"
+ynh_exec_as_app mkdir -p "$install_dir/$app"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -44,7 +44,7 @@ ynh_config_add_nginx
 #=================================================
 ynh_script_progression "Creating Drush alias..."
 
-mkdir -p "$install_dir/drush/sites/"
+ynh_exec_as_app mkdir -p "$install_dir/drush/sites/"
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
 
 #=================================================
@@ -52,7 +52,7 @@ ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/s
 #=================================================
 ynh_script_progression "Installing Composer..."
 
-mkdir -p "$install_dir/.composer"
+ynh_exec_as_app mkdir -p "$install_dir/.composer"
 ynh_config_add --template="composer.json" --destination="$install_dir/composer.json"
 
 ynh_composer_install
@@ -65,8 +65,7 @@ export PATH="$install_dir/vendor/bin:$PATH"
 #=================================================
 ynh_script_progression "Installing Drupal..." --weight=5
 
-chmod -R o-rwx "$install_dir"
-chown -R "$app:www-data" "$install_dir"
+update-alternatives --set php /usr/bin/php$php_version
 
 pushd "$install_dir"
     _ynh_exec_with_drush_php \
@@ -79,6 +78,8 @@ pushd "$install_dir"
         --locale="$language" \
         --yes
 popd
+
+update-alternatives --auto php
 
 #=================================================
 # SETUP THE CRON FILE
@@ -94,9 +95,6 @@ ynh_script_progression "Storing the config file checksum..."
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum "$install_dir/$app/sites/default/settings.php"
-
-chmod 400 "$install_dir/$app/sites/default/settings.php"
-chown "$app:$app" "$install_dir/$app/sites/default/settings.php"
 
 #=================================================
 # END OF SCRIPT
