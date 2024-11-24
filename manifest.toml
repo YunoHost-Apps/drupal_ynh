@@ -14,18 +14,22 @@ maintainers = ["yalh76"]
 [upstream]
 license = "GPL-2.0-or-later"
 website = "https://www.drupal.org"
-admindoc = "https://www.drupal.org/docs/8"
+admindoc = "https://www.drupal.org/docs/9"
 code = "https://github.com/drupal/drupal"
+cpe = "cpe:2.3:a:drupal:drupal"
 
 [integration]
-yunohost = ">= 11.2.18"
+yunohost = ">= 11.2.30"
 helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
-ram.build = "2G"
+ram.build = "50M"
 ram.runtime = "50M"
 
 [install]
@@ -61,12 +65,8 @@ ram.runtime = "50M"
     default = "standard"
 
 [resources]
-    [resources.sources.main]
-    url = "https://github.com/drupal-composer/drupal-project/archive/f57a511f2c5a078c0669cf7d5a2b7ae0f9696759.tar.gz"
-    sha256 = "f0a952d6bc2870807d3f6cd36ecfe10682e078d9e7646a016d9a94d955a6ba3c"
 
-    autoupdate.upstream = "https://github.com/drupal-composer/drupal-project"
-    autoupdate.strategy = "latest_github_commit"
+    [resources.sources]
 
     [resources.system_user]
 
@@ -78,8 +78,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = [
-        "mariadb-server",
-        "curl",
         "php8.2-fpm",
         "php8.2-cli",
         "php8.2-gd",
@@ -91,6 +89,9 @@ ram.runtime = "50M"
         "php8.2-simplexml",
         "php8.2-curl",
         "php8.2-readline",
+        "curl",
+        "libzip-dev",
+        "mariadb-server",
     ]
 
     [resources.database]

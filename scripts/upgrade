@@ -1,85 +1,70 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
-
-ynh_app_setting_set_default --key=php_upload_max_filesize --value=512M
-
-ynh_app_setting_set_default --key=php_memory_limit --value=512M
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression "Upgrading source files..."
+ynh_app_setting_set_default --key=php_upload_max_filesize --value=512M
+ynh_app_setting_set_default --key=php_post_max_size --value=512M
+ynh_app_setting_set_default --key=php_memory_limit --value=512M
 
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="app composer.json"
-ynh_store_file_checksum "$install_dir/composer.json"
-mkdir -p "$install_dir/$app"
-
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
-#=================================================
-# REAPPLY SYSTEM CONFIGURATIONS
-#=================================================
-ynh_script_progression "Upgrading system configurations related to $app..."
-
-# Create a dedicated PHP-FPM config
-ynh_config_add_phpfpm
-
-# Create a dedicated NGINX config
-ynh_config_add_nginx
+if [ -d "$install_dir/$app" ]; then
+  mv "$install_dir/$app" "$install_dir/web"
+  mv "$install_dir/drush/sites/$app.site.yml" "$install_dir/drush/sites/self.site.yml"
+fi
 
 #=================================================
 # UPGRADE COMPOSER
 #=================================================
 ynh_script_progression "Upgrading Composer..."
 
-mkdir -p "$install_dir/.composer"
 ynh_config_add --template="composer.json" --destination="$install_dir/composer.json"
 
-ynh_composer_exec update
+ynh_composer_install
+ynh_composer_exec install --no-dev
 
-export PATH="$install_dir/vendor/bin:$PATH"
+#=================================================
+# CREATE DRUSH ALIAS
+#=================================================
+ynh_script_progression "Creating Drush alias..."
+
+install -d -m 750 -o $app -g $app "$install_dir/drush/sites/"
+ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/self.site.yml"
 
 #=================================================
 # UPGRADE DRUPAL
 #=================================================
 ynh_script_progression "Upgrading Drupal..."
 
-ynh_backup_if_checksum_is_different "$install_dir/$app/sites/default/settings.php"
+ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
 pushd "$install_dir"
-    _ynh_exec_with_drush_php drush "@$app.prod" state:set system.maintenance_mode 1 --input-format=integer
-    _ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
-    _ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
-    _ynh_exec_with_drush_php drush "@$app.prod" -y updatedb
-    _ynh_exec_with_drush_php drush "@$app.prod" cache:rebuild
-    _ynh_exec_with_drush_php drush "@$app.prod" state:set system.maintenance_mode 0 --input-format=integer
+	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 1 --input-format=integer
+	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
+	_ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
+	_ynh_exec_with_drush_php drush "@$app" -y updatedb
+	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
+	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 0 --input-format=integer
 popd
 
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression "Storing the config file checksum..."
-
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum "$install_dir/$app/sites/default/settings.php"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/$app/sites/default/settings.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown $app:$app "$install_dir/$app/sites/default/settings.php"
+ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 
 #=================================================
-# SETUP THE CRON FILE
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression "Setting up the cron file"
+ynh_script_progression "Upgrading system configurations related to $app..."
+
+ynh_config_add_phpfpm
+
+ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 

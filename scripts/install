@@ -1,100 +1,70 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
-ynh_app_setting_set --key=php_upload_max_filesize --value=512M
-
-ynh_app_setting_set --key=php_memory_limit --value=512M
-
 #=================================================
-# RETRIEVE ARGUMENTS FROM THE MANIFEST
+# INITIALIZE AND STORE SETTINGS
 #=================================================
 
 admin_mail=$(ynh_user_get_info --username=$admin --key=mail)
 
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression "Setting up source files..."
-
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
-
-mkdir -p "$install_dir/$app"
-
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
-#=================================================
-# SYSTEM CONFIGURATION
-#=================================================
-ynh_script_progression "Adding system configurations related to $app..."
-
-# Create a dedicated PHP-FPM config
-ynh_config_add_phpfpm
-
-# Create a dedicated NGINX config
-ynh_config_add_nginx
-
-#=================================================
-# SPECIFIC SETUP
-#=================================================
-# CREATE DRUSH ALIAS
-#=================================================
-ynh_script_progression "Creating Drush alias..."
-
-mkdir -p "$install_dir/drush/sites/"
-ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
+ynh_app_setting_set --key=php_upload_max_filesize --value=512M
+ynh_app_setting_set --key=php_post_max_size --value=512M
+ynh_app_setting_set --key=php_memory_limit --value=512M
 
 #=================================================
 # INSTALL COMPOSER
 #=================================================
 ynh_script_progression "Installing Composer..."
 
-mkdir -p "$install_dir/.composer"
 ynh_config_add --template="composer.json" --destination="$install_dir/composer.json"
 
 ynh_composer_install
 ynh_composer_exec install --no-dev
 
-export PATH="$install_dir/vendor/bin:$PATH"
+#=================================================
+# CREATE DRUSH ALIAS
+#=================================================
+ynh_script_progression "Creating Drush alias..."
+
+install -d -m 750 -o $app -g $app "$install_dir/drush/sites/"
+ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/self.site.yml"
 
 #=================================================
 # INSTALL DRUPAL
 #=================================================
 ynh_script_progression "Installing Drupal..."
 
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
-#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:www-data" "$install_dir"
 pushd "$install_dir"
-    _ynh_exec_with_drush_php \
-        drush site:install "$install_profil" \
-        --account-name="$admin" \
-        --account-pass="$password" \
-        --account-mail="$admin_mail" \
-        --db-url="mysql://$db_user:$db_pwd@localhost/$db_name" \
-        --site-name="$app" \
-        --locale="$language" \
-        --yes
+	_ynh_exec_with_drush_php drush "@$app" site:install "$install_profil" \
+		--account-name="$admin" \
+		--account-pass="$password" \
+		--account-mail="$admin_mail" \
+		--db-url="mysql://$db_user:$db_pwd@localhost/$db_name" \
+		--site-name="$app" \
+		--locale="$language" \
+		--yes
 popd
 
+ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
+
 #=================================================
-# SETUP THE CRON FILE
+# SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression "Setting up the cron file..."
+ynh_script_progression "Adding system configurations related to $app..."
+
+# Create a PHP-FPM config (with conf/extra_php-fpm.conf being appended to it)
+ynh_config_add_phpfpm
+
+# Create a dedicated NGINX config using the conf/nginx.conf template
+ynh_config_add_nginx
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression "Storing the config file checksum..."
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$install_dir/$app/sites/default/settings.php"
-
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 400 "$install_dir/$app/sites/default/settings.php"
-#REMOVEME? Assuming the file is setup using ynh_config_add, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown "$app:$app" "$install_dir/$app/sites/default/settings.php"
 
 #=================================================
 # END OF SCRIPT
