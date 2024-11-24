@@ -6,8 +6,6 @@
 # PHP APP SPECIFIC
 #=================================================
 
-swap_needed=512
-
 _ynh_exec_with_drush_php() {
     ynh_hide_warnings ynh_exec_as_app \
         env PATH="$PATH" DRUSH_PHP="/usr/bin/php$php_version" \

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source _common.sh
-source ynh_add_swap
 source /usr/share/yunohost/helpers
 
 ynh_app_setting_set --key=php_upload_max_filesize --value=512M
@@ -39,15 +38,6 @@ ynh_config_add_nginx
 
 #=================================================
 # SPECIFIC SETUP
-#=================================================
-# ADD SWAP
-#=================================================
-ynh_script_progression "Adding swap..."
-
-if ! ynh_in_ci_tests; then
-    ynh_add_swap --size=$swap_needed
-fi
-
 #=================================================
 # CREATE DRUSH ALIAS
 #=================================================
