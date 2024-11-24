@@ -46,6 +46,8 @@ ynh_script_progression "Upgrading Drupal..."
 
 ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
 
+update-alternatives --set php /usr/bin/php$php_version
+
 pushd "$install_dir"
 	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 1 --input-format=integer
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
