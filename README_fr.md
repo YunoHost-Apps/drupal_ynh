@@ -5,7 +5,9 @@ Il NE doit PAS être modifié à la main.
 
 # Drupal pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![Niveau d’intégration](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![Statut du fonctionnement](https://apps.yunohost.org/badge/state/drupal)
+![Statut de maintenance](https://apps.yunohost.org/badge/maintained/drupal)
 
 [![Installer Drupal avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
@@ -27,7 +29,7 @@ Framework de gestion de contenu libre et open-source.
 ## Documentations et ressources
 
 - Site officiel de l’app : <https://www.drupal.org>
-- Documentation officielle de l’admin : <https://www.drupal.org/docs/8>
+- Documentation officielle de l’admin : <https://www.drupal.org/docs/9>
 - Dépôt de code officiel de l’app : <https://github.com/drupal/drupal>
 - YunoHost Store : <https://apps.yunohost.org/app/drupal>
 - Signaler un bug : <https://github.com/YunoHost-Apps/drupal_ynh/issues>

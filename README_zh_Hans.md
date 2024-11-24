@@ -5,7 +5,9 @@
 
 # YunoHost 上的 Drupal
 
-[![集成程度](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![工作状态](https://apps.yunohost.org/badge/state/drupal)
+![维护状态](https://apps.yunohost.org/badge/maintained/drupal)
 
 [![使用 YunoHost 安装 Drupal](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
@@ -27,7 +29,7 @@ Free and open-source content management framework.
 ## 文档与资源
 
 - 官方应用网站： <https://www.drupal.org>
-- 官方管理文档： <https://www.drupal.org/docs/8>
+- 官方管理文档： <https://www.drupal.org/docs/9>
 - 上游应用代码库： <https://github.com/drupal/drupal>
 - YunoHost 商店： <https://apps.yunohost.org/app/drupal>
 - 报告 bug： <https://github.com/YunoHost-Apps/drupal_ynh/issues>

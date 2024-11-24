@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # Drupal YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/drupal)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/drupal)
 
 [![Instalatu Drupal YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
@@ -27,7 +29,7 @@ Free and open-source content management framework.
 ## Dokumentazioa eta baliabideak
 
 - Aplikazioaren webgune ofiziala: <https://www.drupal.org>
-- Administratzaileen dokumentazio ofiziala: <https://www.drupal.org/docs/8>
+- Administratzaileen dokumentazio ofiziala: <https://www.drupal.org/docs/9>
 - Jatorrizko aplikazioaren kode-gordailua: <https://github.com/drupal/drupal>
 - YunoHost Denda: <https://apps.yunohost.org/app/drupal>
 - Eman errore baten berri: <https://github.com/YunoHost-Apps/drupal_ynh/issues>
