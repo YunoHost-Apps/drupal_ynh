@@ -70,14 +70,13 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.permissions]
     main.url = "/"
 
     [resources.apt]
     packages = [
-        "mariadb-server",
-        "curl",
         "php8.2-fpm",
         "php8.2-cli",
         "php8.2-gd",
@@ -89,6 +88,9 @@ ram.runtime = "50M"
         "php8.2-simplexml",
         "php8.2-curl",
         "php8.2-readline",
+        "curl",
+        "libzip-dev",
+        "mariadb-server",
     ]
 
     [resources.database]

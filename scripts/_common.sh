@@ -14,7 +14,8 @@ swap_needed=512
 
 _ynh_exec_with_drush_php() {
     ynh_exec_warn_less ynh_exec_as "$app" \
-        env PATH="$PATH" DRUSH_PHP="/usr/bin/php$phpversion" \
+        env PATH="$install_dir/vendor/bin:$PATH" \
+        DRUSH_PHP="/usr/bin/php$phpversion" \
         "$@"
 }
 

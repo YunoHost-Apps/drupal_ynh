@@ -75,6 +75,8 @@ ynh_backup_if_checksum_is_different --file="$install_dir/$app/sites/default/sett
 chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
 
+update-alternatives --set php /usr/bin/php$phpversion
+
 pushd "$install_dir"
     _ynh_exec_with_drush_php drush "@$app.prod" state:set system.maintenance_mode 1 --input-format=integer
     _ynh_exec_with_drush_php "php$phpversion" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
