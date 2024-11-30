@@ -21,9 +21,6 @@ admin_mail=$(ynh_user_get_info --username=$admin --key=mail)
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-# Download, check integrity, uncompress and patch the source from app.src
-#ynh_setup_source --dest_dir="$install_dir"
-
 mkdir -p "$install_dir/$app"
 
 chmod -R o-rwx "$install_dir"
@@ -95,13 +92,6 @@ pushd "$install_dir"
 popd
 
 #=================================================
-# SETUP THE CRON FILE
-#=================================================
-ynh_script_progression --message="Setting up the cron file..." --weight=1
-
-ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
 ynh_script_progression --message="Storing the config file checksum..." --weight=1
@@ -111,6 +101,13 @@ ynh_store_file_checksum --file="$install_dir/$app/sites/default/settings.php"
 
 chmod 400 "$install_dir/$app/sites/default/settings.php"
 chown "$app:$app" "$install_dir/$app/sites/default/settings.php"
+
+#=================================================
+# SETUP THE CRON FILE
+#=================================================
+ynh_script_progression --message="Setting up the cron file..." --weight=1
+
+ynh_add_config --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
 # END OF SCRIPT
