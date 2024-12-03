@@ -5,7 +5,9 @@ It shall NOT be edited by hand.
 
 # Drupal for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![Working status](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![Integration level](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![Working status](https://apps.yunohost.org/badge/state/drupal)
+![Maintenance status](https://apps.yunohost.org/badge/maintained/drupal)
 
 [![Install Drupal with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 

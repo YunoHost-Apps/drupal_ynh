@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Drupal para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/drupal.svg)](https://ci-apps.yunohost.org/ci/apps/drupal/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/drupal.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/drupal.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![Estado funcional](https://apps.yunohost.org/badge/state/drupal)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/drupal)
 
 [![Instalar Drupal con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
@@ -34,7 +36,7 @@ Free and open-source content management framework.
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
