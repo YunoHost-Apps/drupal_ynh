@@ -27,7 +27,7 @@ fi
 ynh_script_progression --message="Creating Drush alias..." --weight=1
 
 mkdir -p "$install_dir/drush/sites/"
-ynh_add_config --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
+ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
 
 #=================================================
 # UPGRADE COMPOSER
