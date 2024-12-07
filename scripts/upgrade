@@ -22,6 +22,14 @@ if [ -d "$install_dir/$app" ]; then
 fi
 
 #=================================================
+# CREATE DRUSH ALIAS
+#=================================================
+ynh_script_progression --message="Creating Drush alias..." --weight=1
+
+mkdir -p "$install_dir/drush/sites/"
+ynh_add_config --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
+
+#=================================================
 # UPGRADE COMPOSER
 #=================================================
 ynh_script_progression "Upgrading Composer..."
@@ -47,6 +55,8 @@ ynh_script_progression "Upgrading Drupal..."
 ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
 
 update-alternatives --set php /usr/bin/php$php_version
+
+update-alternatives --set php /usr/bin/php$phpversion
 
 pushd "$install_dir"
 	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 1 --input-format=integer
