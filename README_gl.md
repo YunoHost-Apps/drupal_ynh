@@ -22,7 +22,6 @@ Free and open-source content management framework.
 
 **Versión proporcionada:** 2024.12.08~ynh1
 
-
 ## Capturas de pantalla
 
 ![Captura de pantalla de Drupal](./doc/screenshots/screenshot.png)
