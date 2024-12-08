@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## Dokumentasi dan sumber daya
 
 - Website aplikasi resmi: <https://www.drupal.org>
-- Dokumentasi admin resmi: <https://www.drupal.org/docs/8>
+- Dokumentasi admin resmi: <https://www.drupal.org/docs/9>
 - Depot kode aplikasi hulu: <https://github.com/drupal/drupal>
 - Gudang YunoHost: <https://apps.yunohost.org/app/drupal>
 - Laporkan bug: <https://github.com/YunoHost-Apps/drupal_ynh/issues>

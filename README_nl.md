@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## Documentatie en bronnen
 
 - Officiele website van de app: <https://www.drupal.org>
-- Officiele beheerdersdocumentatie: <https://www.drupal.org/docs/8>
+- Officiele beheerdersdocumentatie: <https://www.drupal.org/docs/9>
 - Upstream app codedepot: <https://github.com/drupal/drupal>
 - YunoHost-store: <https://apps.yunohost.org/app/drupal>
 - Meld een bug: <https://github.com/YunoHost-Apps/drupal_ynh/issues>

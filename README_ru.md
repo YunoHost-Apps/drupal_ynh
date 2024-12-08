@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## Документация и ресурсы
 
 - Официальный веб-сайт приложения: <https://www.drupal.org>
-- Официальная документация администратора: <https://www.drupal.org/docs/8>
+- Официальная документация администратора: <https://www.drupal.org/docs/9>
 - Репозиторий кода главной ветки приложения: <https://github.com/drupal/drupal>
 - Магазин YunoHost: <https://apps.yunohost.org/app/drupal>
 - Сообщите об ошибке: <https://github.com/YunoHost-Apps/drupal_ynh/issues>
