@@ -20,7 +20,7 @@
 
 Free and open-source content management framework.
 
-**分发版本：** 2024.07.03~ynh2
+**分发版本：** 2024.12.08~ynh1
 
 ## 截图
 
