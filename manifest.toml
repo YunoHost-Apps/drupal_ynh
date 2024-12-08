@@ -7,7 +7,7 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "2024.07.03~ynh1"
+version = "2024.07.03~ynh2"
 
 maintainers = ["yalh76"]
 
