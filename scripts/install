@@ -42,8 +42,6 @@ ynh_script_progression "Installing Drupal..."
 
 update-alternatives --set php /usr/bin/php$php_version
 
-update-alternatives --set php /usr/bin/php$php_version
-
 pushd "$install_dir"
 	_ynh_exec_with_drush_php drush "@$app" site:install "$install_profil" \
 		--account-name="$admin" \
