@@ -61,6 +61,8 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
 	_ynh_exec_with_drush_php drush "@$app" -y updatedb
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
 	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 0 --input-format=integer
 popd

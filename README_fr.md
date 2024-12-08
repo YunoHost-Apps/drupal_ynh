@@ -20,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 2024.07.03~ynh2
+**Version incluse :** 2024.12.08~ynh1
 
 ## Captures d’écran
 

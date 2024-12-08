@@ -20,7 +20,7 @@ No se debe editar a mano.
 
 Free and open-source content management framework.
 
-**Versión actual:** 2024.07.03~ynh2
+**Versión actual:** 2024.12.08~ynh1
 
 ## Capturas
 
