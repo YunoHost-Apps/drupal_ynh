@@ -20,7 +20,7 @@ Nie powinno być ono edytowane ręcznie.
 
 Free and open-source content management framework.
 
-**Dostarczona wersja:** 2024.07.03~ynh2
+**Dostarczona wersja:** 2024.12.08~ynh1
 
 ## Zrzuty ekranu
 
