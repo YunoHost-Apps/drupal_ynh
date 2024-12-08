@@ -20,7 +20,7 @@ It shall NOT be edited by hand.
 
 Free and open-source content management framework.
 
-**Shipped version:** 2024.07.03~ynh1
+**Shipped version:** 2024.07.03~ynh2
 
 ## Screenshots
 

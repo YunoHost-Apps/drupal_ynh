@@ -20,7 +20,7 @@
 
 Free and open-source content management framework.
 
-**Поставляемая версия:** 2024.07.03~ynh1
+**Поставляемая версия:** 2024.07.03~ynh2
 
 ## Снимки экрана
 

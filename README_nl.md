@@ -20,7 +20,7 @@ Hij mag NIET handmatig aangepast worden.
 
 Free and open-source content management framework.
 
-**Geleverde versie:** 2024.07.03~ynh1
+**Geleverde versie:** 2024.07.03~ynh2
 
 ## Schermafdrukken
 
