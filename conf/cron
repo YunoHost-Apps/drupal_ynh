@@ -2,5 +2,5 @@ SHELL=/bin/sh
 PATH=__INSTALL_DIR__/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # m h dom mon dow user	command
-30 *	* * *	__APP__	drush --quiet @__APP__.prod core:cron
+30 *	* * *	__APP__	drush --quiet @__APP__ core:cron
 #

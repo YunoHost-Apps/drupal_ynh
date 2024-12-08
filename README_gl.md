@@ -20,7 +20,7 @@ NON debe editarse manualmente.
 
 Free and open-source content management framework.
 
-**Versión proporcionada:** 2024.07.03~ynh1
+**Versión proporcionada:** 2024.07.03~ynh2
 
 ## Capturas de pantalla
 
@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## Documentación e recursos
 
 - Web oficial da app: <https://www.drupal.org>
-- Documentación oficial para admin: <https://www.drupal.org/docs/8>
+- Documentación oficial para admin: <https://www.drupal.org/docs/9>
 - Repositorio de orixe do código: <https://github.com/drupal/drupal>
 - Tenda YunoHost: <https://apps.yunohost.org/app/drupal>
 - Informar dun problema: <https://github.com/YunoHost-Apps/drupal_ynh/issues>

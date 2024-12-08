@@ -7,24 +7,29 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "2024.07.03~ynh1"
+version = "2024.07.03~ynh2"
 
 maintainers = ["yalh76"]
 
 [upstream]
 license = "GPL-2.0-or-later"
 website = "https://www.drupal.org"
-admindoc = "https://www.drupal.org/docs/8"
+admindoc = "https://www.drupal.org/docs/9"
 code = "https://github.com/drupal/drupal"
+cpe = "cpe:2.3:a:drupal:drupal"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.30"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
+
 disk = "50M"
-ram.build = "2G"
+ram.build = "50M"
 ram.runtime = "50M"
 
 [install]
@@ -60,12 +65,6 @@ ram.runtime = "50M"
     default = "standard"
 
 [resources]
-    [resources.sources.main]
-    url = "https://github.com/drupal-composer/drupal-project/archive/f57a511f2c5a078c0669cf7d5a2b7ae0f9696759.tar.gz"
-    sha256 = "f0a952d6bc2870807d3f6cd36ecfe10682e078d9e7646a016d9a94d955a6ba3c"
-
-    autoupdate.upstream = "https://github.com/drupal-composer/drupal-project"
-    autoupdate.strategy = "latest_github_commit"
 
     [resources.system_user]
 
@@ -91,7 +90,7 @@ ram.runtime = "50M"
         "curl",
         "libzip-dev",
         "mariadb-server",
-    ]
+        ]
 
     [resources.database]
     type = "mysql"

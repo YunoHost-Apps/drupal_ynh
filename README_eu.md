@@ -20,7 +20,7 @@ EZ editatu eskuz.
 
 Free and open-source content management framework.
 
-**Paketatutako bertsioa:** 2024.07.03~ynh1
+**Paketatutako bertsioa:** 2024.07.03~ynh2
 
 ## Pantaila-argazkiak
 
@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## Dokumentazioa eta baliabideak
 
 - Aplikazioaren webgune ofiziala: <https://www.drupal.org>
-- Administratzaileen dokumentazio ofiziala: <https://www.drupal.org/docs/8>
+- Administratzaileen dokumentazio ofiziala: <https://www.drupal.org/docs/9>
 - Jatorrizko aplikazioaren kode-gordailua: <https://github.com/drupal/drupal>
 - YunoHost Denda: <https://apps.yunohost.org/app/drupal>
 - Eman errore baten berri: <https://github.com/YunoHost-Apps/drupal_ynh/issues>
