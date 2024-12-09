@@ -17,17 +17,14 @@
     "require": {
         "drush/drush": "^11.0.0",
         "composer/installers": "^1.9",
-        "drupal/core-composer-scaffold": "^9.3",
-        "drupal/core-project-message": "^9.3",
-        "drupal/core-recommended": "^9.3"
-    },
-    "require-dev": {
-        "drupal/core-dev": "^9.3"
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
@@ -65,7 +62,7 @@
                 "",
                 "<bg=yellow;fg=black>Next steps</>:",
 
-                "  * Install the site: https://www.drupal.org/docs/8/install",
+                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
                 "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
                 "  * Get support: https://www.drupal.org/support",
                 "  * Get involved with the Drupal community:",
