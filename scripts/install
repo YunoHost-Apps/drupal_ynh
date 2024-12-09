@@ -56,6 +56,7 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
 popd
 
+echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 
 #=================================================
