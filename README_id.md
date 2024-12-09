@@ -20,7 +20,7 @@ Ini TIDAK boleh diedit dengan tangan.
 
 Free and open-source content management framework.
 
-**Versi terkirim:** 2024.07.03~ynh2
+**Versi terkirim:** 2024.12.08~ynh1
 
 ## Tangkapan Layar
 
