@@ -73,13 +73,6 @@ ynh_config_add_nginx
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
 #=================================================
-# SETUP THE CRON FILE
-#=================================================
-ynh_script_progression --message="Setting up the cron file..." --weight=1
-
-ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
 # END OF SCRIPT
 #=================================================
 
