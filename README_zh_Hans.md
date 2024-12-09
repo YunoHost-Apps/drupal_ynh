@@ -20,7 +20,7 @@
 
 Free and open-source content management framework.
 
-**分发版本：** 2024.07.03~ynh1
+**分发版本：** 2024.07.03~ynh2
 
 ## 截图
 
@@ -29,7 +29,7 @@ Free and open-source content management framework.
 ## 文档与资源
 
 - 官方应用网站： <https://www.drupal.org>
-- 官方管理文档： <https://www.drupal.org/docs/8>
+- 官方管理文档： <https://www.drupal.org/docs/9>
 - 上游应用代码库： <https://github.com/drupal/drupal>
 - YunoHost 商店： <https://apps.yunohost.org/app/drupal>
 - 报告 bug： <https://github.com/YunoHost-Apps/drupal_ynh/issues>

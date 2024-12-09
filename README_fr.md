@@ -20,7 +20,7 @@ Il NE doit PAS être modifié à la main.
 
 Framework de gestion de contenu libre et open-source.
 
-**Version incluse :** 2024.07.03~ynh1
+**Version incluse :** 2024.07.03~ynh2
 
 ## Captures d’écran
 
@@ -29,7 +29,7 @@ Framework de gestion de contenu libre et open-source.
 ## Documentations et ressources
 
 - Site officiel de l’app : <https://www.drupal.org>
-- Documentation officielle de l’admin : <https://www.drupal.org/docs/8>
+- Documentation officielle de l’admin : <https://www.drupal.org/docs/9>
 - Dépôt de code officiel de l’app : <https://github.com/drupal/drupal>
 - YunoHost Store : <https://apps.yunohost.org/app/drupal>
 - Signaler un bug : <https://github.com/YunoHost-Apps/drupal_ynh/issues>
