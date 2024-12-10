@@ -23,7 +23,7 @@ Open source constituent relationship management (CRM) for non-profits, NGOs and 
 The LDAP module is not installed by default, but can be installed.
 
 
-**Paketatutako bertsioa:** 5.80.0~ynh1
+**Paketatutako bertsioa:** 2024.12.10~ynh1
 
 **Demoa:** <https://civicrm.org/demo>
 

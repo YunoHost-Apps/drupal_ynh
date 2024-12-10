@@ -23,7 +23,7 @@ Gestion des relations avec les constituants (GRC/CRM) pour les organisations à 
 Le module d'authentification LDAP n'est pas installé par défaut, mais peut être installé.
 
 
-**Version incluse :** 5.80.0~ynh1
+**Version incluse :** 2024.12.10~ynh1
 
 **Démo :** <https://civicrm.org/demo>
 
