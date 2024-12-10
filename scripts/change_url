@@ -8,16 +8,15 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Updating NGINX web server configuration..."
 
+# this will most likely adjust NGINX config correctly
 ynh_config_change_url_nginx
 
 #=================================================
 # SPECIFIC MODIFICATIONS
 #=================================================
-# UPDATE DRUSH ALIAS
-#=================================================
-ynh_script_progression "Updating Drush alias..."
 
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
+ynh_replace --match=$old_domain --replace=$new_domain --file="$install_dir/web/sites/default/settings.php"
 
 #=================================================
 # END OF SCRIPT
