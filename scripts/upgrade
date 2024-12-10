@@ -12,15 +12,6 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Ensuring downward compatibility..."
 
-ynh_app_setting_set_default --key=php_upload_max_filesize --value=512M
-ynh_app_setting_set_default --key=php_post_max_size --value=512M
-ynh_app_setting_set_default --key=php_memory_limit --value=512M
-
-if [ -d "$install_dir/$app" ]; then
-  mv "$install_dir/$app" "$install_dir/web"
-  mv "$install_dir/drush/sites/$app.site.yml" "$install_dir/drush/sites/self.site.yml"
-fi
-
 #=================================================
 # CREATE DRUSH ALIAS
 #=================================================
@@ -49,11 +40,12 @@ install -d -m 750 -o $app -g $app "$install_dir/drush/sites/"
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/self.site.yml"
 
 #=================================================
-# UPGRADE DRUPAL
+# UPGRADE DRUPAL AND CIVICRM
 #=================================================
-ynh_script_progression "Upgrading Drupal..."
+ynh_script_progression "Upgrading Drupal and CiviCRM..."
 
 ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
+ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/civicrm.settings.php"
 
 update-alternatives --set php /usr/bin/php$php_version
 
@@ -62,13 +54,16 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
 	_ynh_exec_with_drush_php drush "@$app" -y updatedb
+	_ynh_exec_with_drush_php drush "@$app" -y civicrm-upgrade-db
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
+	_ynh_exec_with_drush_php drush "@$app" cache:clear civicrm
 	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 0 --input-format=integer
 popd
 
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
+ynh_store_file_checksum "$install_dir/web/sites/default/civicrm.settings.php"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
