@@ -36,9 +36,9 @@ install -d -m 750 -o $app -g $app "$install_dir/drush/sites/"
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/self.site.yml"
 
 #=================================================
-# INSTALL DRUPAL
+# INSTALL DRUPAL AND CIVICRM
 #=================================================
-ynh_script_progression "Installing Drupal..."
+ynh_script_progression "Installing Drupal and CiviCRM..."
 
 update-alternatives --set php /usr/bin/php$php_version
 
@@ -51,6 +51,9 @@ pushd "$install_dir"
 		--site-name="$app" \
 		--locale="$language" \
 		--yes
+	chmod +w $install_dir/web/sites/default
+	_ynh_exec_with_drush_php cv core:install --cms-base-url="https://$domain$path" --db="mysql://$db_user:$db_pwd@localhost:3306/$db_name"
+	chmod -w $install_dir/web/sites/default
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
@@ -58,6 +61,7 @@ popd
 
 echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
+ynh_store_file_checksum "$install_dir/web/sites/default/civicrm.settings.php"
 
 #=================================================
 # SYSTEM CONFIGURATION
