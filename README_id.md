@@ -3,53 +3,47 @@ N.B.: README ini dibuat secara otomatis oleh <https://github.com/YunoHost/apps/t
 Ini TIDAK boleh diedit dengan tangan.
 -->
 
-# CiviCRM on Drupal untuk YunoHost
+# Drupal untuk YunoHost
 
-[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/civicrm_drupal)](https://ci-apps.yunohost.org/ci/apps/civicrm_drupal/)
-![Status kerja](https://apps.yunohost.org/badge/state/civicrm_drupal)
-![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/civicrm_drupal)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/drupal)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+![Status kerja](https://apps.yunohost.org/badge/state/drupal)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/drupal)
 
-[![Pasang CiviCRM on Drupal dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=civicrm_drupal)
+[![Pasang Drupal dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=drupal)
 
 *[Baca README ini dengan bahasa yang lain.](./ALL_README.md)*
 
-> *Paket ini memperbolehkan Anda untuk memasang CiviCRM on Drupal secara cepat dan mudah pada server YunoHost.*  
+> *Paket ini memperbolehkan Anda untuk memasang Drupal secara cepat dan mudah pada server YunoHost.*  
 > *Bila Anda tidak mempunyai YunoHost, silakan berkonsultasi dengan [panduan](https://yunohost.org/install) untuk mempelajari bagaimana untuk memasangnya.*
 
 ## Ringkasan
 
-Open source constituent relationship management (CRM) for non-profits, NGOs and advocacy organizations.
+Free and open-source content management framework.
 
-The LDAP module is not installed by default, but can be installed.
-
-
-**Versi terkirim:** 5.80.0~ynh1
-
-**Demo:** <https://civicrm.org/demo>
+**Versi terkirim:** 2024.12.08~ynh1
 
 ## Tangkapan Layar
 
-![Tangkapan Layar pada CiviCRM on Drupal](./doc/screenshots/screenshot.png)
+![Tangkapan Layar pada Drupal](./doc/screenshots/screenshot.png)
 
 ## Dokumentasi dan sumber daya
 
-- Website aplikasi resmi: <https://civicrm.org>
-- Dokumentasi pengguna resmi: <https://docs.civicrm.org/>
-- Dokumentasi admin resmi: <https://docs.civicrm.org/>
-- Depot kode aplikasi hulu: <https://github.com/civicrm/civicrm-drupal-8>
-- Gudang YunoHost: <https://apps.yunohost.org/app/civicrm_drupal>
-- Laporkan bug: <https://github.com/YunoHost-Apps/civicrm_drupal_ynh/issues>
+- Website aplikasi resmi: <https://www.drupal.org>
+- Dokumentasi admin resmi: <https://www.drupal.org/docs/9>
+- Depot kode aplikasi hulu: <https://github.com/drupal/drupal>
+- Gudang YunoHost: <https://apps.yunohost.org/app/drupal>
+- Laporkan bug: <https://github.com/YunoHost-Apps/drupal_ynh/issues>
 
 ## Info developer
 
-Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/civicrm_drupal_ynh/tree/testing).
+Silakan kirim pull request ke [`testing` branch](https://github.com/YunoHost-Apps/drupal_ynh/tree/testing).
 
 Untuk mencoba branch `testing`, silakan dilanjutkan seperti:
 
 ```bash
-sudo yunohost app install https://github.com/YunoHost-Apps/civicrm_drupal_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/drupal_ynh/tree/testing --debug
 atau
-sudo yunohost app upgrade civicrm_drupal -u https://github.com/YunoHost-Apps/civicrm_drupal_ynh/tree/testing --debug
+sudo yunohost app upgrade drupal -u https://github.com/YunoHost-Apps/drupal_ynh/tree/testing --debug
 ```
 
 **Info lebih lanjut mengenai pemaketan aplikasi:** <https://yunohost.org/packaging_apps>
