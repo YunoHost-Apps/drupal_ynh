@@ -37,7 +37,8 @@ ynh_script_progression "Upgrading Composer..."
 ynh_config_add --template="composer.json" --destination="$install_dir/composer.json"
 
 ynh_composer_install
-ynh_composer_exec install --no-dev
+chmod +w $install_dir/web/sites/default/
+ynh_composer_exec update --no-dev
 
 #=================================================
 # CREATE DRUSH ALIAS
@@ -61,6 +62,8 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
 	_ynh_exec_with_drush_php drush "@$app" -y updatedb
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
 	_ynh_exec_with_drush_php drush "@$app" state:set system.maintenance_mode 0 --input-format=integer
 popd

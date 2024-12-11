@@ -51,8 +51,12 @@ pushd "$install_dir"
 		--site-name="$app" \
 		--locale="$language" \
 		--yes
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
+	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
+	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
 popd
 
+echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 
 #=================================================
@@ -65,13 +69,6 @@ ynh_config_add_phpfpm
 
 # Create a dedicated NGINX config using the conf/nginx.conf template
 ynh_config_add_nginx
-
-ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
-
-#=================================================
-# SETUP THE CRON FILE
-#=================================================
-ynh_script_progression --message="Setting up the cron file..." --weight=1
 
 ynh_config_add --template="cron" --destination="/etc/cron.d/$app"
 
