@@ -2,21 +2,24 @@
 
 packaging_format = 2
 
-id = "drupal"
-name = "Drupal"
-description.en = "Content management framework"
-description.fr = "Système de gestion de contenu"
+id = "civicrm_drupal"
+name = "CiviCRM on Drupal"
+description.en = "CRM for non-profits, NGOs and advocacy organizations"
+description.fr = "CRM pour organisations à but non lucratif et ONG"
 
 version = "2024.12.15~ynh1"
 
 maintainers = ["yalh76"]
 
 [upstream]
-license = "GPL-2.0-or-later"
-website = "https://www.drupal.org"
-admindoc = "https://www.drupal.org/docs/9"
-code = "https://github.com/drupal/drupal"
-cpe = "cpe:2.3:a:drupal:drupal"
+license = "AGPL-3.0-or-later"
+website = "https://civicrm.org"
+demo = "https://civicrm.org/demo"
+admindoc = "https://docs.civicrm.org/"
+userdoc = "https://docs.civicrm.org/"
+code = "https://github.com/civicrm/civicrm-drupal-8"
+cpe = "cpe:2.3:a:civicrm:civicrm"
+fund = "https://civicrm.org/civicrm/contribute/transact?reset=1&id=47"
 
 [integration]
 yunohost = ">= 11.2.30"
@@ -88,11 +91,18 @@ ram.runtime = "50M"
         "php8.2-json",
         "php8.2-simplexml",
         "php8.2-curl",
+        "php8.2-soap",
+        "php8.2-intl",
+        "php8.2-zip",
         "php8.2-readline",
+        "php8.2-bcmath",
+        "php8.2-mbstring",
+        "php8.2-fileinfo",
+        "php8.2-soap",
         "curl",
         "libzip-dev",
         "mariadb-server",
-        ]
+    ]
 
     [resources.database]
     type = "mysql"

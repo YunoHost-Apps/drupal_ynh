@@ -64,11 +64,12 @@ install -d -m 750 -o $app -g $app "$install_dir/drush/sites/"
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/self.site.yml"
 
 #=================================================
-# UPGRADE DRUPAL
+# UPGRADE DRUPAL AND CIVICRM
 #=================================================
-ynh_script_progression "Upgrading Drupal..."
+ynh_script_progression "Upgrading Drupal and CiviCRM..."
 
 ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
+ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/civicrm.settings.php"
 
 update-alternatives --set php /usr/bin/php$php_version
 
@@ -77,6 +78,8 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update drupal/core webflo/drupal-core-require-dev --with-dependencies
 	_ynh_exec_with_drush_php "php$php_version" composer.phar update --with-dependencies
 	_ynh_exec_with_drush_php drush "@$app" -y updatedb
+	_ynh_exec_with_drush_php cv upgrade:db
+	_ynh_exec_with_drush_php cv flush
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
@@ -84,6 +87,7 @@ pushd "$install_dir"
 popd
 
 ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
+ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/civicrm.settings.php"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
