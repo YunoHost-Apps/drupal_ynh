@@ -83,6 +83,7 @@ ram.runtime = "50M"
         "php8.2-xml",
         "php8.2-ldap",
         "php8.2-mbstring",
+        "php8.2-uploadprogress",
         "php8.2-json",
         "php8.2-simplexml",
         "php8.2-curl",
