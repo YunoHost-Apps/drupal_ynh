@@ -20,12 +20,16 @@ if [ -d "$install_dir/$app" ]; then
 	mv "$install_dir/$app" "$install_dir/web"
 	ynh_delete_file_checksum "$install_dir/$app/sites/default/settings.php"
 	ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
+
 	mv "$install_dir/drush/sites/$app.site.yml" "$install_dir/drush/sites/self.site.yml"
 	ynh_delete_file_checksum "$install_dir/drush/sites/$app.site.yml"
+	ynh_store_file_checksum "$install_dir/drush/sites/self.site.yml"
 fi
 
 if ! grep -q "\$settings['trusted_host_patterns'] = ['^$domain\$'];" "$install_dir/web/sites/default/settings.php"; then
 	echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
+	ynh_delete_file_checksum "$install_dir/web/sites/default/settings.php"
+	ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 fi
 
 if [ -d "$install_dir/tmp" ]; then
@@ -33,6 +37,8 @@ if [ -d "$install_dir/tmp" ]; then
 	ynh_config_add --template=".htaccess" --destination="$install_dir/tmp/.htaccess"
 	chmod 0444 "$install_dir/tmp/.htaccess"
 	echo "\$settings['file_temp_path'] = '../tmp';" >> "$install_dir/web/sites/default/settings.php"
+	ynh_delete_file_checksum "$install_dir/web/sites/default/settings.php"
+	ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 fi
 
 if [ -d "$install_dir/private" ]; then
@@ -40,9 +46,9 @@ if [ -d "$install_dir/private" ]; then
 	ynh_config_add --template=".htaccess" --destination="$install_dir/private/.htaccess"
 	chmod 0444 "$install_dir/private/.htaccess"
 	echo "\$settings['file_private_path'] = '../private';" >> "$install_dir/web/sites/default/settings.php"
+	ynh_delete_file_checksum "$install_dir/web/sites/default/settings.php"
+	ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 fi
-
-ynh_backup_if_checksum_is_different "$install_dir/web/sites/default/settings.php"
 
 #=================================================
 # UPGRADE COMPOSER
