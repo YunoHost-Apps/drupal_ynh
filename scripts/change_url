@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -17,6 +21,8 @@ ynh_config_change_url_nginx
 
 ynh_config_add --template="example.site.yml" --destination="$install_dir/drush/sites/$app.site.yml"
 ynh_replace --match=$old_domain --replace=$new_domain --file="$install_dir/web/sites/default/settings.php"
+ynh_delete_file_checksum "$install_dir/$app/sites/default/settings.php"
+ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 
 #=================================================
 # END OF SCRIPT

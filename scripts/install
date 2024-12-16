@@ -51,12 +51,23 @@ pushd "$install_dir"
 		--site-name="$app" \
 		--locale="$language" \
 		--yes
+
+	echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
+
+	install -d -m 770 -o $app -g www-data "$install_dir/tmp"
+	ynh_config_add --template=".htaccess" --destination="$install_dir/tmp/.htaccess"
+	chmod 0444 "$install_dir/tmp/.htaccess"
+	echo "\$settings['file_temp_path'] = '../tmp';" >> "$install_dir/web/sites/default/settings.php"
+
+	install -d -m 770 -o $app -g www-data "$install_dir/private"
+	ynh_config_add --template=".htaccess" --destination="$install_dir/private/.htaccess"
+	chmod 0444 "$install_dir/private/.htaccess"
+	echo "\$settings['file_private_path'] = '../private';" >> "$install_dir/web/sites/default/settings.php"
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
 popd
 
-echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
 
 #=================================================
