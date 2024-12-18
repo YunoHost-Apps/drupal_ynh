@@ -20,7 +20,7 @@ EZ editatu eskuz.
 
 Free and open-source content management framework.
 
-**Paketatutako bertsioa:** 2024.12.15~ynh1
+**Paketatutako bertsioa:** 2024.12.19~ynh1
 
 ## Pantaila-argazkiak
 
