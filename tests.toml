@@ -19,3 +19,4 @@ test_format = 1.0
     test_upgrade_from.64f92590358018ffa8d0d71e6d6b3a158a82423e.name = "Upgrade from 2024.07.03~ynh1"
     test_upgrade_from.af680bb22f0f0a9e9d19f473f0d8b96de2f4fbdd.name = "Upgrade from 2024.07.03~ynh2"
     test_upgrade_from.83620ec0bbdd2b1fcb2a045b264af2d6d808deb2.name = "Upgrade from 2024.12.08~ynh1"
+    test_upgrade_from.ae9e28cd78e04c1f38c72cd74cb4d6ed269e0c3b.name = "Upgrade from 2024.12.15~ynh1"
