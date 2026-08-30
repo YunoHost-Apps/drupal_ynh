@@ -48,7 +48,6 @@ pushd "$install_dir"
 		--account-mail="$admin_mail" \
 		--db-url="mysql://$db_user:$db_pwd@localhost/$db_name" \
 		--site-name="$app" \
-		--locale="$language" \
 		--yes
 
 	echo "\$settings['trusted_host_patterns'] = ['^$domain\$'];" >> "$install_dir/web/sites/default/settings.php"
@@ -65,6 +64,8 @@ pushd "$install_dir"
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance css.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" -y config-set system.performance js.preprocess 0
 	_ynh_exec_with_drush_php drush "@$app" cache:rebuild
+	_ynh_exec_with_drush_php drush "@$app" pm:install language
+	_ynh_exec_with_drush_php drush "@$app" pm:install locale
 popd
 
 ynh_store_file_checksum "$install_dir/web/sites/default/settings.php"
