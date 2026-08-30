@@ -44,13 +44,6 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
-    [install.language]
-    ask.en = "Choose the application language"
-    ask.fr = "Choisissez la langue de l'application"
-    type = "select"
-    choices = ["fr", "en"]
-    default = "en"
-
     [install.admin]
     type = "user"
 
@@ -65,6 +58,16 @@ ram.runtime = "50M"
     default = "standard"
 
 [resources]
+
+    [resources.sources]
+
+    [resources.sources.main]
+    prefetch = false
+    url = "https://github.com/drupal/drupal/archive/refs/tags/10.6.15.tar.gz"
+    sha256 = "9c8883b72b10ef398a1bd6b436f7abe35b083fc7540ffa15aae9b58aebaab695"
+
+    autoupdate.strategy = "latest_github_tag"
+    autoupdate.version_regex = "^(10.*)$"
 
     [resources.system_user]
 
