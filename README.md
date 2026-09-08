@@ -11,7 +11,7 @@ It shall NOT be edited by hand.
 Content management framework
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://www.drupal.org)
-[![Version: 10.6.15~ynh1](https://img.shields.io/badge/Version-10.6.15~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/drupal/)
+[![Version: 10.6.16~ynh1](https://img.shields.io/badge/Version-10.6.16~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/drupal/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/drupal"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
