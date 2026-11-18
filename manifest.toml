@@ -7,7 +7,7 @@ name = "Drupal"
 description.en = "Content management framework"
 description.fr = "Système de gestion de contenu"
 
-version = "10.6.18~ynh1"
+version = "10.6.22~ynh1"
 
 maintainers = ["yalh76"]
 
@@ -63,8 +63,8 @@ ram.runtime = "50M"
 
     [resources.sources.main]
     prefetch = false
-    url = "https://github.com/drupal/drupal/archive/refs/tags/10.6.18.tar.gz"
-    sha256 = "03f4ff3f2d824e5e6829a8b3718b9f41bc612357155cc6aa5a7defad68819fbb"
+    url = "https://github.com/drupal/drupal/archive/refs/tags/10.6.22.tar.gz"
+    sha256 = "f4d32810903c19b1571aa9d919db5462338711ce1e9d65809a0bee8c1ef47e4e"
     autoupdate.strategy = "latest_github_tag"
     autoupdate.version_regex = "^(10.*)$"
 
